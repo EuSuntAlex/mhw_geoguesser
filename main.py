@@ -14,7 +14,7 @@ background_image = pygame.image.load("background.png")
 background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
 # D:\Steam\userdata\121717891\760\remote\582010\screenshots
 # PFP IMG
-profile_pics = [pygame.image.load(f"img{i+1}.jpg") for i in range(6)]
+profile_pics = [pygame.image.load(f"pfp/img{i+1}.jpg") for i in range(6)]
 profile_pics = [pygame.transform.scale(img, (50, 50)) for img in profile_pics]
 
 WHITE = (255, 255, 255)
@@ -83,25 +83,21 @@ def cool_people_screen():
                 if back_button.collidepoint(event.pos):
                     running = False
         
-        # Desenează lista de persoane pe partea stângă
         x_offset = WIDTH // 10
         y_offset = HEIGHT // 5
         for i, person in enumerate(cool_people_data):
-            # Iconiță
             screen.blit(profile_pics[i], (x_offset, y_offset + i * 100))
             # Nume
             draw_text(person["name"], button_font, WHITE, screen, x_offset + 70, y_offset + i * 100)
             # Descriere
             draw_text(person["desc"], desc_font, WHITE, screen, x_offset + 70, y_offset + i * 100 + 30)
         
-        # Desenează "Special thanks" pe partea dreaptă (pe coloană)
         thanks_x = WIDTH * 3 // 4
         thanks_y = HEIGHT // 5
         for line in special_thanks:
             draw_text(line, button_font, WHITE, screen, thanks_x, thanks_y, centered=True)
-            thanks_y += 40  # Spațiu între linii
+            thanks_y += 40  
         
-        # Desenează butonul "Back"
         pygame.draw.rect(screen, BLUE, back_button, border_radius=10)
         draw_text("Back", button_font, WHITE, screen, back_button.centerx, back_button.centery, centered=True)
         
@@ -114,13 +110,12 @@ def main_menu():
         screen.blit(pygame.transform.scale(background_image, (WIDTH, HEIGHT)), (0, 0))
         draw_text("MH World GeoGuessr", font, BLACK, screen, WIDTH // 2, HEIGHT // 10, centered=True)
         
-        # Desenează butoanele
         pygame.draw.rect(screen, BLUE, start_button, border_radius=10)
         pygame.draw.rect(screen, BLUE, easy_button, border_radius=10)
         pygame.draw.rect(screen, BLUE, cool_people_button, border_radius=10)
         pygame.draw.rect(screen, BLUE, exit_button, border_radius=10)
         
-        # Desenează textul butoanelor centrat
+        
         draw_text("Start Game", button_font, WHITE, screen, start_button.centerx, start_button.centery, centered=True)
         draw_text("Start Easy Game", button_font, WHITE, screen, easy_button.centerx, easy_button.centery, centered=True)
         draw_text("Cool People", button_font, WHITE, screen, cool_people_button.centerx, cool_people_button.centery, centered=True)
@@ -135,7 +130,7 @@ def main_menu():
             if event.type == pygame.VIDEORESIZE:
                 WIDTH, HEIGHT = event.w, event.h
                 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
-                # Recalculează poziția butoanelor
+                
                 start_button.center = (WIDTH // 2, HEIGHT // 2 - 100)
                 easy_button.center = (WIDTH // 2, HEIGHT // 2)
                 cool_people_button.center = (WIDTH // 2, HEIGHT // 2 + 100)
@@ -146,6 +141,7 @@ def main_menu():
                     print("Start Game pressed")
                 if easy_button.collidepoint(event.pos):
                     print("Start Easy Game pressed")
+                    easy_mode.easy_mode()
                 if cool_people_button.collidepoint(event.pos):
                     cool_people_screen()
                 if exit_button.collidepoint(event.pos):
