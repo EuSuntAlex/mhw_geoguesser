@@ -1,14 +1,14 @@
 import pygame
 import sys
 import random
+import loc
 
 def easy_mode():
     pygame.init()
-    WIDTH, HEIGHT = 1280, 720
-    screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
+    screen = pygame.display.set_mode((0, 0), pygame.RESIZABLE)
+    WIDTH, HEIGHT = screen.get_size()  
     pygame.display.set_caption("Easy Mode")
     
-   
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
     BLUE = (70, 130, 180)
@@ -16,34 +16,45 @@ def easy_mode():
     # Font
     font = pygame.font.Font(None, 40)
     
-    # imagini
-    images = [
-        {"small": "image1_small.jpg", "medium": "image1_medium.jpg", "large": "image1_large.jpg", "correct": "Option A"},
-        {"small": "image2_small.jpg", "medium": "image2_medium.jpg", "large": "image2_large.jpg", "correct": "Option C"},
-    ]
+    target = random.choice(loc.locations)
+    image_stage = 0
+    img_path = "./locations/" + target["images"][image_stage]
+    img = pygame.image.load(img_path)
     
-    current_image = random.choice(images)
-    image_stage = "small"
-    img = pygame.image.load(current_image[image_stage])
-    img = pygame.transform.scale(img, (WIDTH // 2, HEIGHT // 2))
-    
-    options = ["Option A", "Option B", "Option C", "Option D", "Option E", "Option F"]
+    options = target["options"]
     random.shuffle(options)
-    
-    # But
-    button_width, button_height = 200, 50
-    buttons = [pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 + i * 60, button_width, button_height) for i in range(6)]
     
     running = True
     while running:
+        WIDTH, HEIGHT = screen.get_size()
+        img_scaled = pygame.transform.scale(img, (int(WIDTH * 0.8), int(HEIGHT * 0.75)))
         screen.fill(WHITE)
-        screen.blit(img, (WIDTH // 4, HEIGHT // 6))
         
-        # Drawe but
-        for i, option in enumerate(options):
-            pygame.draw.rect(screen, BLUE, buttons[i], border_radius=5)
-            text_surface = font.render(option, True, WHITE)
-            text_rect = text_surface.get_rect(center=buttons[i].center)
+        # center img
+        img_rect = img_scaled.get_rect(center=(WIDTH // 2, HEIGHT // 3))
+        screen.blit(img_scaled, img_rect.topleft)
+        
+        # Butoane 
+        button_width, button_height = 250, 50
+        button_spacing = 20
+        buttons = []
+        start_x = WIDTH // 4
+        start_y = HEIGHT - 150
+        
+        for i in range(2):  # 2 rows
+            for j in range(3):  # 3 col
+                idx = i * 3 + j
+                if idx < len(options):
+                    button_rect = pygame.Rect(start_x + j * (button_width + button_spacing), 
+                                              start_y + i * (button_height + button_spacing),
+                                              button_width, button_height)
+                    buttons.append(button_rect)
+        
+        # Desenare butoane
+        for i, button in enumerate(buttons):
+            pygame.draw.rect(screen, BLUE, button, border_radius=5)
+            text_surface = font.render(options[i], True, WHITE)
+            text_rect = text_surface.get_rect(center=button.center)
             screen.blit(text_surface, text_rect)
         
         for event in pygame.event.get():
@@ -56,20 +67,17 @@ def easy_mode():
                 for i, button in enumerate(buttons):
                     if button.collidepoint(event.pos):
                         selected_option = options[i]
-                        if selected_option == current_image["correct"]:
+                        if selected_option == target["correct"]:
                             print("Correct Answer!")
                             running = False
                         else:
                             print("Wrong Answer!")
-                            options.pop(i)  # wrong thing
-                            buttons.pop(i)  # yeet button
-                            if image_stage == "small":
-                                image_stage = "medium"
-                            elif image_stage == "medium":
-                                image_stage = "large"
-                            img = pygame.image.load(current_image[image_stage])
-                            img = pygame.transform.scale(img, (WIDTH // 2, HEIGHT // 2))
-                            
+                            options.pop(i)
+                            if options:
+                                image_stage = min(image_stage + 1, len(target["images"]) - 1)
+                                img_path = "./locations/" + target["images"][image_stage]
+                                img = pygame.image.load(img_path)
+        
         pygame.display.update()
     
 if __name__ == "__main__":
