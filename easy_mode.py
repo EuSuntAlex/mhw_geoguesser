@@ -17,7 +17,6 @@ def easy_mode():
     # Font
     font = pygame.font.Font(None, 40)
     
-    
     heart_img = pygame.image.load("hp.png")  
     heart_img = pygame.transform.scale(heart_img, (50, 50))  
     
@@ -25,8 +24,22 @@ def easy_mode():
     score = 0  
     lives = 3  
     
+    
+    used_locations = []
+    
     while running:
+        
+        if len(used_locations) == len(loc.locations):
+            print("No more locations!")
+            running = False
+            break
+        
+        
         target = random.choice(loc.locations)
+        while target in used_locations:
+            target = random.choice(loc.locations)
+        used_locations.append(target)
+        
         image_stage = 0
         img_path = "./locations/" + target["images"][image_stage]
         img = pygame.image.load(img_path)
@@ -61,18 +74,18 @@ def easy_mode():
                                                   button_width, button_height)
                         buttons.append(button_rect)
             
-            #  butoane
+            
             for i, button in enumerate(buttons):
                 pygame.draw.rect(screen, BLUE, button, border_radius=5)
                 text_surface = font.render(options[i], True, WHITE)
                 text_rect = text_surface.get_rect(center=button.center)
                 screen.blit(text_surface, text_rect)
             
-            # Afișare scor
+            
             score_text = font.render(f"Score: {score}", True, BLACK)
             screen.blit(score_text, (WIDTH - 150, 70))  
             
-            
+           
             for i in range(lives):
                 screen.blit(heart_img, (20 + i * 50, 20))
             
@@ -83,7 +96,7 @@ def easy_mode():
             exit_text_rect = exit_text.get_rect(center=exit_button.center)
             screen.blit(exit_text, exit_text_rect)
             
-            selected_option = None  # 
+            selected_option = None  
             
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -104,7 +117,7 @@ def easy_mode():
                                     score += 2  
                                 else:
                                     score += 1  
-                                break 
+                                break  
                             else:
                                 print("Wrong Answer!")
                                 attempts += 1  
@@ -114,9 +127,6 @@ def easy_mode():
                                         print("Game Over! You've lost all lives.")
                                         running = False
                                         break
-                                    else:
-                                        print("You've lost a life! Moving to a new location.")
-                                        break  
                                 else:
                                     options.pop(i)
                                     if options:
@@ -129,6 +139,13 @@ def easy_mode():
                 break
             if selected_option is not None and (attempts >= 3 or selected_option == target["correct"]):
                 break  
+    
+    if len(used_locations) == len(loc.locations):
+        screen.fill(WHITE)
+        no_more_text = font.render("No more locations!", True, BLACK)
+        screen.blit(no_more_text, (WIDTH // 2 - no_more_text.get_width() // 2, HEIGHT // 2))
+        pygame.display.update()
+        pygame.time.wait(3000)  
     
     pygame.quit()
     sys.exit()
