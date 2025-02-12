@@ -5,8 +5,8 @@ import easy_mode
 pygame.init()
 
 
-WIDTH, HEIGHT = 1280, 720  
-screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
+screen = pygame.display.set_mode((0, 0), pygame.RESIZABLE)
+WIDTH, HEIGHT = screen.get_size()  
 pygame.display.set_caption("MH World GeoGuessr")
 
 # Background
