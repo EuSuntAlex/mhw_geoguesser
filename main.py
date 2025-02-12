@@ -1,6 +1,7 @@
 import pygame
 import sys
 import easy_mode
+import geoguessr
 
 pygame.init()
 
@@ -139,6 +140,7 @@ def main_menu():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if start_button.collidepoint(event.pos):
                     print("Start Game pressed")
+                    geoguessr.geoguessr_mode()
                 if easy_button.collidepoint(event.pos):
                     print("Start Easy Game pressed")
                     easy_mode.easy_mode()
