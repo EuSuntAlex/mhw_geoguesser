@@ -152,4 +152,4 @@ def main_menu():
         
         pygame.display.update()
 
-main_menu()
+main_menu() #Doamne ajuta
