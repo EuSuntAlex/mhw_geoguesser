@@ -16,5 +16,7 @@ locations = [
         "images": ["Astera_Secret_View_1.jpg", "Astera_Secret_View_2.jpg", "Astera_Secret_View_3.jpg"],
         "options": ["Gathering Hall", "Ancient Forest", "Coral Highlands", "Rotten Vale", "Elder's Recess", "Hoarfrost Reach"],
         "correct": "Gathering Hall"
-    }
+    },
+
+    
 ]
