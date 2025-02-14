@@ -15,7 +15,7 @@ background_image = pygame.image.load("background.png")
 background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
 # D:\Steam\userdata\121717891\760\remote\582010\screenshots
 # PFP IMG
-profile_pics = [pygame.image.load(f"pfp/img{i+1}.jpg") for i in range(6)]
+profile_pics = [pygame.image.load(f"pfp/img{i+1}.jpg") for i in range(7)]
 profile_pics = [pygame.transform.scale(img, (50, 50)) for img in profile_pics]
 
 WHITE = (255, 255, 255)
@@ -47,11 +47,12 @@ back_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT - 100, button_width
 # Person Data
 cool_people_data = [
     {"name": "Vycery", "desc": "The GOAT of Monster Hunter: https://www.twitch.tv/vycery"},
-    {"name": "Gaudium", "desc": "Very cool designer and musician! ko-fi.com/gaudium017"},
+    {"name": "Gaudium", "desc": "Very cool designer and musician! Also the backgrounds are made by her! ko-fi.com/gaudium017"},
     {"name": "Himekoes", "desc": "Kpop lover that also streams! https://www.twitch.tv/himekoes"},
     {"name": "Maurani", "desc": "Safi hunter: https://www.twitch.tv/maurani_mh"},
     {"name": "j1nx_vn", "desc": "Variety streamer!: https://www.twitch.tv/j1nx_vn"},
     {"name": "IlIIllIIIlll aka barcode", "desc": "Lovely person with a chill stream: https://www.twitch.tv/iliilliiillliil"},
+    {"name": "AistarLIVE", "desc": "Awesome hunter with a kind smile: https://www.twitch.tv/AistarLIVE"},
 ]
 special_thanks = [
     "Special thanks to:",

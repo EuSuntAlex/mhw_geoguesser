@@ -14,26 +14,26 @@ def easy_mode():
     BLUE = (70, 130, 180)
     RED = (255, 0, 0)
     
-    # Font
     font = pygame.font.Font(None, 40)
     
-    heart_img = pygame.image.load("hp.png")  
-    heart_img = pygame.transform.scale(heart_img, (50, 50))  
+    heart_img = pygame.image.load("hp.png").convert_alpha().set_colorkey((0, 0, 0))
+    heart_img = pygame.transform.scale(heart_img, (50, 50))
+    
+    # Încarcă imaginea de fundal
+    background = pygame.image.load("easy_background.webp")
+    background = pygame.transform.scale(background, (WIDTH, HEIGHT))  # Scalare fundal
     
     running = True
     score = 0  
     lives = 3  
     
-    
     used_locations = []
     
     while running:
-        
         if len(used_locations) == len(loc.locations):
             print("No more locations!")
             running = False
             break
-        
         
         target = random.choice(loc.locations)
         while target in used_locations:
@@ -52,21 +52,21 @@ def easy_mode():
         while True:
             WIDTH, HEIGHT = screen.get_size()
             img_scaled = pygame.transform.scale(img, (int(WIDTH * 0.8), int(HEIGHT * 0.75)))
-            screen.fill(WHITE)
             
+            # Desenează fundalul
+            screen.blit(background, (0, 0))
             
             img_rect = img_scaled.get_rect(center=(WIDTH // 2, HEIGHT // 2.5))  
             screen.blit(img_scaled, img_rect.topleft)
             
-            # Butoane 
             button_width, button_height = 250, 50
             button_spacing = 20
             buttons = []
             start_x = WIDTH // 4
             start_y = HEIGHT - 200  
             
-            for i in range(2):  # 2 rows
-                for j in range(3):  # 3 col
+            for i in range(2):  
+                for j in range(3):  
                     idx = i * 3 + j
                     if idx < len(options):
                         button_rect = pygame.Rect(start_x + j * (button_width + button_spacing), 
@@ -74,22 +74,18 @@ def easy_mode():
                                                   button_width, button_height)
                         buttons.append(button_rect)
             
-            
             for i, button in enumerate(buttons):
                 pygame.draw.rect(screen, BLUE, button, border_radius=5)
                 text_surface = font.render(options[i], True, WHITE)
                 text_rect = text_surface.get_rect(center=button.center)
                 screen.blit(text_surface, text_rect)
             
-            
             score_text = font.render(f"Score: {score}", True, BLACK)
             screen.blit(score_text, (WIDTH - 150, 70))  
             
-           
             for i in range(lives):
                 screen.blit(heart_img, (20 + i * 50, 20))
             
-            # Buton exit
             exit_button = pygame.Rect(WIDTH - 120, 20, 80, 40) 
             pygame.draw.rect(screen, RED, exit_button, border_radius=5)
             exit_text = font.render("Exit", True, WHITE)
@@ -121,6 +117,14 @@ def easy_mode():
                             else:
                                 print("Wrong Answer!")
                                 attempts += 1  
+                                
+                                pygame.draw.rect(screen, RED, button, border_radius=5)
+                                text_surface = font.render(options[i], True, WHITE)
+                                text_rect = text_surface.get_rect(center=button.center)
+                                screen.blit(text_surface, text_rect)
+                                pygame.display.update()
+                                pygame.time.wait(240)
+                                
                                 if attempts >= 3:  
                                     lives -= 1  
                                     if lives == 0:  
