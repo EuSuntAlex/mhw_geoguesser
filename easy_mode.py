@@ -19,7 +19,6 @@ def easy_mode():
     heart_img = pygame.image.load("hp.png").convert_alpha().set_colorkey((0, 0, 0))
     heart_img = pygame.transform.scale(heart_img, (50, 50))
     
-    # Încarcă imaginea de fundal
     background = pygame.image.load("easy_background.webp")
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))  # Scalare fundal
     
@@ -53,7 +52,7 @@ def easy_mode():
             WIDTH, HEIGHT = screen.get_size()
             img_scaled = pygame.transform.scale(img, (int(WIDTH * 0.8), int(HEIGHT * 0.75)))
             
-            # Desenează fundalul
+            # Deseneaza
             screen.blit(background, (0, 0))
             
             img_rect = img_scaled.get_rect(center=(WIDTH // 2, HEIGHT // 2.5))  
