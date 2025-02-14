@@ -187,6 +187,7 @@ points = [
         "location": "Rotten Vale Platform 1", 
         "correct": (687, 263)
     },
+    
     {
         "images": "Rotten_Vale_02.jpg",
         "location": "Rotten Vale Platform 1", 
@@ -197,6 +198,73 @@ points = [
         "location": "Rotten Vale Platform 1", 
         "correct": (562, 517)
     },
-    
+
+
+
+    {
+        "images": "er1.jpg",
+        "location": "Elder's Recess Platform 2", 
+        "correct": (892, 757)
+    },
+    {
+        "images": "er2.jpg",
+        "location": "Elder's Recess Platform 2", 
+        "correct": (942, 835)
+    },
+    {
+        "images": "er3.jpg",
+        "location": "Elder's Recess Platform 2", 
+        "correct": (744, 1014)
+    },
+    {
+        "images": "er4.jpg",
+        "location": "Elder's Recess Platform 2", 
+        "correct": (1121, 523)
+    },
+    {
+        "images": "er5.jpg",
+        "location": "Elder's Recess Platform 2", 
+        "correct": (1044, 306)
+    },
+    {
+        "images": "er6.jpg",
+        "location": "Elder's Recess Platform 1", 
+        "correct": (988, 516)
+    },
+    {
+        "images": "er7.jpg",
+        "location": "Elder's Recess Platform 1", 
+        "correct": (879, 309)
+    },
+    {
+        "images": "er8.jpg",
+        "location": "Elder's Recess Platform 1", 
+        "correct": (896, 213)
+    },
+    {
+        "images": "er9.jpg",
+        "location": "Elder's Recess Platform 1", 
+        "correct": (846, 459)
+    },
+    {
+        "images": "er10.jpg",
+        "location": "Elder's Recess Platform 1", 
+        "correct": (791, 509)
+    },
+    {
+        "images": "er11.jpg",
+        "location": "Elder's Recess Platform 1", 
+        "correct": (824, 700)
+    },
+    {
+        "images": "er12.jpg",
+        "location": "Elder's Recess Platform 1", 
+        "correct": (898, 840)
+    },
+    {
+        "images": "er13.jpg",
+        "location": "Elder's Recess Platform 1", 
+        "correct": (1320, 709)
+    },
 
 ]
