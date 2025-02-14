@@ -297,4 +297,27 @@ points = [
         "correct": (1127, 623)
     },
 
+
+
+    {
+        "images": "se1.jpg",
+        "location": "Seliana", 
+        "correct": (1005, 355)
+    },
+    {
+        "images": "se2.jpg",
+        "location": "Seliana", 
+        "correct": (973, 629)
+    },
+    {
+        "images": "se3.jpg",
+        "location": "Seliana", 
+        "correct": (1025, 562)
+    },
+    {
+        "images": "se4.jpg",
+        "location": "Seliana", 
+        "correct": (1055, 549)
+    },
+
 ]
