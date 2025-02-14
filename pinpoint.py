@@ -320,4 +320,43 @@ points = [
         "correct": (1055, 549)
     },
 
+    #Aestera
+    {
+        "images": "a1.jpg",
+        "location": "Astera", 
+        "correct": (680, 694)
+    },
+    {
+        "images": "a2.jpg",
+        "location": "Astera", 
+        "correct": (667, 412)
+    },
+    {
+        "images": "a3.jpg",
+        "location": "Astera", 
+        "correct": (837, 835)
+    },
+    {
+        "images": "a4.jpg",
+        "location": "Astera", 
+        "correct": (1040, 905)
+    },
+    {
+        "images": "a5.jpg",
+        "location": "Astera", 
+        "correct": (1344, 853)
+    },
+    {
+        "images": "a6.jpg",
+        "location": "Astera", 
+        "correct": (1588, 724)
+    },
+
+
+    #Aestera Gathering Hub
+    {
+        "images": "ag1.jpg",
+        "location": "Aestera Gathering Hub", 
+        "correct": (1226, 520)
+    },
 ]
