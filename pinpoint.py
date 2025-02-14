@@ -267,4 +267,34 @@ points = [
         "correct": (1320, 709)
     },
 
+
+
+
+
+    {
+        "images": "rb1.jpg",
+        "location": "Research Base Platform 1", 
+        "correct": (853, 586)
+    },
+    {
+        "images": "rb2.jpg",
+        "location": "Research Base Platform 2", 
+        "correct": (778, 557)
+    },
+    {
+        "images": "rb3.jpg",
+        "location": "Research Base Platform 2", 
+        "correct": (719, 581)
+    },
+    {
+        "images": "rb4.jpg",
+        "location": "Research Base Platform 1", 
+        "correct": (872, 688)
+    },
+    {
+        "images": "rb5.jpg",
+        "location": "Research Base Platform 3", 
+        "correct": (1127, 623)
+    },
+
 ]
