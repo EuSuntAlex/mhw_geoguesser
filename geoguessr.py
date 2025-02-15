@@ -35,6 +35,9 @@ def distance(point1, point2):
 def geoguessr_mode():
     screen = pygame.display.set_mode((0, 0), pygame.RESIZABLE)
     WIDTH, HEIGHT = screen.get_size()  
+
+    background = pygame.image.load("easy_background.webp")
+    background = pygame.transform.scale(background, (WIDTH, HEIGHT))  # Scalare fundal
     pygame.display.set_caption("Geoguessr Mode")
     
     running = True
@@ -65,17 +68,18 @@ def geoguessr_mode():
     # initial image
     if current_point:
         initial_image = pygame.image.load(os.path.join("geoPhotos", current_point["images"]))
-        initial_image = pygame.transform.scale(initial_image, (int(WIDTH * 0.8), int(HEIGHT * 0.5)))
+        initial_image = pygame.transform.scale(initial_image, (int(WIDTH * 0.8), int(HEIGHT * 0.8)))
     else:
         initial_image = None
     
     while running:
         screen.fill(WHITE)
+        screen.blit(background, (0, 0))
         
         if not show_maps:
             if initial_image:
                 # display image
-                screen.blit(initial_image, (WIDTH // 2 - initial_image.get_width() // 2, 20))
+                screen.blit(initial_image, (WIDTH // 2 - initial_image.get_width() // 2, 30))
             else:
                 # display message
                 no_more_text = font.render("No more Locations!", True, BLACK)
@@ -154,9 +158,9 @@ def geoguessr_mode():
             screen.blit(back_text, (back_button.x + 20, back_button.y + 10))
         
         # display score
-        score_text = font.render(f"Score: {int(score)}", True, BLACK)
+        score_text = font.render(f"Score: {int(score)}", True, WHITE)
         screen.blit(score_text, (WIDTH - 250, 20))
-        round_text = font.render(f"Round: {current_round + 1}/{total_rounds}", True, BLACK)
+        round_text = font.render(f"Round: {current_round + 1}/{total_rounds}", True, WHITE)
         screen.blit(round_text, (WIDTH - 250, 60))
         
         # display feedback

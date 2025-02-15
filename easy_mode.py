@@ -16,16 +16,16 @@ def easy_mode():
     
     font = pygame.font.Font(None, 40)
     
-    heart_img = pygame.image.load("hp.png").convert_alpha().set_colorkey((0, 0, 0))
+    heart_img = pygame.image.load("hp.png")
+
     heart_img = pygame.transform.scale(heart_img, (50, 50))
     
-    background = pygame.image.load("easy_background.webp")
-    background = pygame.transform.scale(background, (WIDTH, HEIGHT))  # Scalare fundal
+    background = pygame.image.load("geo_bckg.png")
+    background = pygame.transform.scale(background, (WIDTH, HEIGHT))  
     
     running = True
     score = 0  
     lives = 3  
-    
     used_locations = []
     
     while running:
@@ -52,12 +52,14 @@ def easy_mode():
             WIDTH, HEIGHT = screen.get_size()
             img_scaled = pygame.transform.scale(img, (int(WIDTH * 0.8), int(HEIGHT * 0.75)))
             
-            # Deseneaza
             screen.blit(background, (0, 0))
-            
             img_rect = img_scaled.get_rect(center=(WIDTH // 2, HEIGHT // 2.5))  
             screen.blit(img_scaled, img_rect.topleft)
-            
+            # "Back" button
+            back_button = pygame.Rect(20, HEIGHT - 120, 200, 50)
+            pygame.draw.rect(screen, RED, back_button, border_radius=5)
+            back_text = font.render("Back", True, WHITE)
+            screen.blit(back_text, (back_button.x + 20, back_button.y + 10))
             button_width, button_height = 250, 50
             button_spacing = 20
             buttons = []
@@ -82,9 +84,11 @@ def easy_mode():
             score_text = font.render(f"Score: {score}", True, BLACK)
             screen.blit(score_text, (WIDTH - 150, 70))  
             
+
             for i in range(lives):
-                screen.blit(heart_img, (20 + i * 50, 20))
+                screen.blit(heart_img, (20 + i * 50, 20)) 
             
+            #eixt butt
             exit_button = pygame.Rect(WIDTH - 120, 20, 80, 40) 
             pygame.draw.rect(screen, RED, exit_button, border_radius=5)
             exit_text = font.render("Exit", True, WHITE)
@@ -103,6 +107,9 @@ def easy_mode():
                     if exit_button.collidepoint(event.pos):
                         pygame.quit()
                         sys.exit()
+                    elif back_button.collidepoint(event.pos):
+                        from main import main_menu 
+                        main_menu() 
                     for i, button in enumerate(buttons):
                         if button.collidepoint(event.pos):
                             selected_option = options[i]
