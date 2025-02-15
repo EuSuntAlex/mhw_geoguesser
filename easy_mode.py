@@ -3,6 +3,19 @@ import sys
 import random
 import loc
 
+#https://stackoverflow.com/questions/31836104/pyinstaller-and-onefile-how-to-include-an-image-in-the-exe-file
+import os
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS2
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
+
 def easy_mode():
     pygame.init()
     screen = pygame.display.set_mode((0, 0), pygame.RESIZABLE)
@@ -16,10 +29,10 @@ def easy_mode():
     
     font = pygame.font.Font(None, 40)
     
-    heart_img = pygame.image.load("hp.png")
+    heart_img = pygame.image.load(resource_path("hp.png"))
     heart_img = pygame.transform.scale(heart_img, (50, 50))
     
-    background = pygame.image.load("geo_bckg.png")
+    background = pygame.image.load(resource_path("geo_bckg.png"))
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))  
     
     running = True
@@ -39,7 +52,7 @@ def easy_mode():
         used_locations.append(target)
         
         img_path = target["images"][0]
-        img = pygame.image.load(img_path)
+        img = pygame.image.load(resource_path(img_path))
         
         options = target["options"]
         random.shuffle(options)

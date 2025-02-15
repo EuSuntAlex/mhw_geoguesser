@@ -2,6 +2,19 @@ import pygame
 import sys
 import easy_mode
 import geoguessr
+#https://stackoverflow.com/questions/31836104/pyinstaller-and-onefile-how-to-include-an-image-in-the-exe-file
+import os
+import sys
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS2
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
 
 pygame.init()
 
@@ -11,11 +24,11 @@ WIDTH, HEIGHT = screen.get_size()
 pygame.display.set_caption("MH World GeoGuessr")
 
 # Background
-background_image = pygame.image.load("background.png")
+background_image = pygame.image.load(resource_path("background.png"))
 background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
 # D:\Steam\userdata\121717891\760\remote\582010\screenshots
 # PFP IMG
-profile_pics = [pygame.image.load(f"pfp/img{i+1}.jpg") for i in range(7)]
+profile_pics = [pygame.image.load(resource_path(f"pfp/img{i+1}.jpg")) for i in range(7)]
 profile_pics = [pygame.transform.scale(img, (50, 50)) for img in profile_pics]
 
 WHITE = (255, 255, 255)

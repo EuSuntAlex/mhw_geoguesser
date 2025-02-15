@@ -5,6 +5,14 @@ import random
 import math
 from pinpoint import points
 
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS2
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 pygame.init()
 
 WHITE = (255, 255, 255)
@@ -15,12 +23,12 @@ GREEN = (0, 255, 0)
 
 font = pygame.font.Font(None, 40)
 
-MAPS_FOLDER = "maps"
+MAPS_FOLDER = resource_path("maps")
 maps = [f for f in os.listdir(MAPS_FOLDER) if f.endswith(('.jpg', '.png'))]
 maps.sort()
 
 def open_map(map_name):
-    return pygame.image.load(os.path.join(MAPS_FOLDER, map_name))
+    return pygame.image.load(resource_path(os.path.join("maps", map_name)))
 
 def distance(point1, point2):
     return math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
@@ -29,7 +37,7 @@ def geoguessr_mode():
     screen = pygame.display.set_mode((0, 0), pygame.RESIZABLE)
     WIDTH, HEIGHT = screen.get_size()  
 
-    background = pygame.image.load("easy_background.webp")
+    background = pygame.image.load(resource_path("easy_background.webp"))
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
     pygame.display.set_caption("Geoguessr Mode")
     
@@ -58,7 +66,7 @@ def geoguessr_mode():
     current_point = get_random_point()
     
     if current_point:
-        initial_image = pygame.image.load(os.path.join("geoPhotos", current_point["images"]))
+        initial_image = pygame.image.load(resource_path(os.path.join("geoPhotos", current_point["images"])))
         initial_image = pygame.transform.scale(initial_image, (int(WIDTH * 0.8), int(HEIGHT * 0.8)))
     else:
         initial_image = None
@@ -202,14 +210,28 @@ def geoguessr_mode():
                                 correct_location = current_point["location"]
                                 user_location = selected_map.split('.')[0]
                                 user_coords = user_click
+
+                                feedback_text = font.render(f"Correct Answer! Points gained: {score}", True, GREEN)
+                                screen.blit(feedback_text, (WIDTH // 2 - feedback_text.get_width() // 2, HEIGHT // 2))
+                                pygame.display.update()
+                                pygame.time.wait(1000)  
+
                                 pygame.draw.circle(screen, GREEN, correct_point, 10)
                                 pygame.draw.line(screen, GREEN, user_click, correct_point, 2)
                                 pygame.display.update()
-                                pygame.time.wait(2000)
+                                pygame.time.wait(1000)
                             else:
-                                print("Wrong Location! 0 points.")
-                                show_feedback = True
+                                correct_x = int(current_point["correct"][0] * (WIDTH / 1920))
+                                correct_y = int(current_point["correct"][1] * (HEIGHT / 1080))
+                                correct_point = (correct_x, correct_y)
                                 correct_location = current_point["location"]
+
+                                feedback_text = font.render(f"Wrong Answer!", True, RED)
+                                screen.blit(feedback_text, (WIDTH // 2 - feedback_text.get_width() // 2, HEIGHT // 2))
+                                pygame.display.update()
+                                pygame.time.wait(1000) 
+
+                                show_feedback = True
                                 user_location = selected_map.split('.')[0]
                                 user_coords = user_click
                             
@@ -220,7 +242,7 @@ def geoguessr_mode():
                             else:
                                 current_point = get_random_point()
                                 if current_point:
-                                    initial_image = pygame.image.load(os.path.join("geoPhotos", current_point["images"]))
+                                    initial_image = pygame.image.load(resource_path(os.path.join("geoPhotos", current_point["images"])))
                                     initial_image = pygame.transform.scale(initial_image, (int(WIDTH * 0.8), int(HEIGHT * 0.5)))
                                     selected_map = None
                                     user_click = None
@@ -238,11 +260,13 @@ def geoguessr_mode():
         
         pygame.display.update()
 
-    screen.fill(WHITE)
-    final_score_text = font.render(f"Final Score: {int(score)}", True, BLACK)
+    screen.fill(BLACK)
+    final_score_text = font.render(f"Final Score: {int(score)}", True, WHITE)
     screen.blit(final_score_text, (WIDTH // 2 - final_score_text.get_width() // 2, HEIGHT // 2))
     pygame.display.update()
-    pygame.time.wait(3000)  
+    pygame.time.wait(2000)
+    from main import main_menu
+    main_menu()  
 
 if __name__ == "__main__":
     geoguessr_mode()

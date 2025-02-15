@@ -510,4 +510,83 @@ points = [
         "correct": (1136, 466)
     },
 
+    #Wildspire
+
+    {
+        "images": "w1.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (576, 840)
+    },
+    {
+        "images": "w2.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (1066, 884)
+    },
+    {
+        "images": "w3.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (1136, 427)
+    },
+    {
+        "images": "w4.jpg",
+        "location": "Wildspire Waste Platform 1", 
+        "correct": (1213, 237)
+    },
+    {
+        "images": "w5.jpg",
+        "location": "Wildspire Waste Platform 1", 
+        "correct": (1008, 418)
+    },
+    {
+        "images": "w6.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (802, 232)
+    },
+    {
+        "images": "w7.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (573, 411)
+    },
+    {
+        "images": "w8.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (567, 607)
+    },
+    {
+        "images": "w9.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (789, 496)
+    },
+    {
+        "images": "w10.jpg",
+        "location": "Wildspire Waste Platform 1", 
+        "correct": (1112, 800)
+    },
+    {
+        "images": "w11.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (1193, 254)
+    },
+    {
+        "images": "w12.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (844, 488)
+    },
+    {
+        "images": "w13.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (637, 451)
+    },
+    {
+        "images": "w14.jpg",
+        "location": "Wildspire Waste Platform 3", 
+        "correct": (968, 494)
+    },
+    {
+        "images": "w15.jpg",
+        "location": "Wildspire Waste Platform 3", 
+        "correct": (994, 616)
+    },
+
+
 ]
