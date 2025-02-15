@@ -432,4 +432,82 @@ points = [
         "correct": (789, 630)
     },
 
+
+    #Forest
+    {
+        "images": "f1.jpg",
+        "location": "Ancient Forest Platform 1", 
+        "correct": (663, 943)
+    },
+    {
+        "images": "f2.jpg",
+        "location": "Ancient Forest Platform 1", 
+        "correct": (708, 795)
+    },
+    {
+        "images": "f3.jpg",
+        "location": "Ancient Forest Platform 1", 
+        "correct": (674, 592)
+    },
+    {
+        "images": "f4.jpg",
+        "location": "Ancient Forest Platform 1", 
+        "correct": (739, 202)
+    },
+    {
+        "images": "f5.jpg",
+        "location": "Ancient Forest Platform 1", 
+        "correct": (739, 202)
+    },
+    {
+        "images": "f6.jpg",
+        "location": "Ancient Forest Platform 1", 
+        "correct": (632, 318)
+    },
+    {
+        "images": "f7.jpg",
+        "location": "Ancient Forest Platform 1", 
+        "correct": (1121, 37)
+    },
+    {
+        "images": "f7.jpg",
+        "location": "Ancient Forest Platform 1", 
+        "correct": (1221, 425)
+    },
+    {
+        "images": "f8.jpg",
+        "location": "Ancient Forest Platform 1", 
+        "correct": (1202, 662)
+    },
+    {
+        "images": "f9.jpg",
+        "location": "Ancient Forest Platform 1", 
+        "correct": (1418, 655)
+    },
+    {
+        "images": "f10.jpg",
+        "location": "Ancient Forest Platform 1", 
+        "correct": (1293, 319)
+    },
+    {
+        "images": "f11.jpg",
+        "location": "Ancient Forest Platform 2", 
+        "correct": (927, 516)
+    },
+    {
+        "images": "f12.jpg",
+        "location": "Ancient Forest Platform 2", 
+        "correct": (1143, 376)
+    },
+    {
+        "images": "f13.jpg",
+        "location": "Ancient Forest Platform 3", 
+        "correct": (1184, 398)
+    },
+    {
+        "images": "f14.jpg",
+        "location": "Ancient Forest Platform 2", 
+        "correct": (1136, 466)
+    },
+
 ]
