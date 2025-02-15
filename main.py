@@ -52,17 +52,17 @@ cool_people_data = [
     {"name": "Maurani", "desc": "Safi hunter: https://www.twitch.tv/maurani_mh"},
     {"name": "j1nx_vn", "desc": "Variety streamer!: https://www.twitch.tv/j1nx_vn"},
     {"name": "IlIIllIIIlll aka barcode", "desc": "Lovely person with a chill stream: https://www.twitch.tv/iliilliiillliil"},
-    {"name": "AistarLIVE", "desc": "Awesome hunter with a kind smile: https://www.twitch.tv/AistarLIVE"},
+    {"name": "AistarLIVE", "desc": "Awesome hunter with a kind smile. He is also very good at drawing: https://www.twitch.tv/AistarLIVE"},
 ]
 special_thanks = [
     "Special thanks to:",
-    "Stoopy",
-    "Pistol",
-    "Stanley",
-    "Valky",
-    "Virz",
-    "AOE_Kurvy",
-    "for being awesome"
+    "Stoopy for helping with the locations",
+    "Pistol for helping with the locations",
+    "IlIIllIIIlll for giving me nice picutres",
+    "Stanley for serving the Emperor",
+    "Valky for modding the community",
+    "Pandorum for sponsoring the community",
+    "You guys are awesome!"
 ]
 
 def cool_people_screen():
