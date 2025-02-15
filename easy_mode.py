@@ -17,7 +17,6 @@ def easy_mode():
     font = pygame.font.Font(None, 40)
     
     heart_img = pygame.image.load("hp.png")
-
     heart_img = pygame.transform.scale(heart_img, (50, 50))
     
     background = pygame.image.load("geo_bckg.png")
@@ -39,27 +38,33 @@ def easy_mode():
             target = random.choice(loc.locations)
         used_locations.append(target)
         
-        image_stage = 0
-        img_path = "./locations/" + target["images"][image_stage]
+        img_path = target["images"][0]
         img = pygame.image.load(img_path)
         
         options = target["options"]
         random.shuffle(options)
         
         attempts = 0  
+        zoom_factor = 3.0  
         
         while True:
             WIDTH, HEIGHT = screen.get_size()
-            img_scaled = pygame.transform.scale(img, (int(WIDTH * 0.8), int(HEIGHT * 0.75)))
+            
+            img_width = int(WIDTH * 0.8 * zoom_factor)
+            img_height = int(HEIGHT * 0.75 * zoom_factor)
+            img_scaled = pygame.transform.scale(img, (img_width, img_height))
             
             screen.blit(background, (0, 0))
+            
             img_rect = img_scaled.get_rect(center=(WIDTH // 2, HEIGHT // 2.5))  
             screen.blit(img_scaled, img_rect.topleft)
-            # "Back" button
+            
+            # Buton "Back"
             back_button = pygame.Rect(20, HEIGHT - 120, 200, 50)
             pygame.draw.rect(screen, RED, back_button, border_radius=5)
             back_text = font.render("Back", True, WHITE)
             screen.blit(back_text, (back_button.x + 20, back_button.y + 10))
+            
             button_width, button_height = 250, 50
             button_spacing = 20
             buttons = []
@@ -84,11 +89,10 @@ def easy_mode():
             score_text = font.render(f"Score: {score}", True, BLACK)
             screen.blit(score_text, (WIDTH - 150, 70))  
             
-
             for i in range(lives):
                 screen.blit(heart_img, (20 + i * 50, 20)) 
             
-            #eixt butt
+            # Buton "Exit"
             exit_button = pygame.Rect(WIDTH - 120, 20, 80, 40) 
             pygame.draw.rect(screen, RED, exit_button, border_radius=5)
             exit_text = font.render("Exit", True, WHITE)
@@ -114,14 +118,12 @@ def easy_mode():
                         if button.collidepoint(event.pos):
                             selected_option = options[i]
                             if selected_option == target["correct"]:
-                                print("Correct Answer!")
                                 if attempts == 0:
                                     score += 2  
                                 else:
                                     score += 1  
                                 break  
                             else:
-                                print("Wrong Answer!")
                                 attempts += 1  
                                 
                                 pygame.draw.rect(screen, RED, button, border_radius=5)
@@ -131,18 +133,22 @@ def easy_mode():
                                 pygame.display.update()
                                 pygame.time.wait(240)
                                 
+                                zoom_factor = max(1.0, zoom_factor - 1)  # Nu permite zoom sub 1.0
+                                
                                 if attempts >= 3:  
                                     lives -= 1  
                                     if lives == 0:  
-                                        print("Game Over! You've lost all lives.")
-                                        running = False
+                                        screen.fill(BLACK)
+                                        no_more_text = font.render("Game Over! You've lost all lives.", True, WHITE)
+                                        screen.blit(no_more_text, (WIDTH // 2 - no_more_text.get_width() // 2, HEIGHT // 2))
+                                        pygame.display.update()
+                                        pygame.time.wait(1500) 
+                                        from main import main_menu 
+                                        main_menu()
                                         break
                                 else:
                                     options.pop(i)
-                                    if options:
-                                        image_stage = min(image_stage + 1, len(target["images"]) - 1)
-                                        img_path = "./locations/" + target["images"][image_stage]
-                                        img = pygame.image.load(img_path)
+
             
             pygame.display.update()
             if not running:
@@ -151,14 +157,16 @@ def easy_mode():
                 break  
     
     if len(used_locations) == len(loc.locations):
-        screen.fill(WHITE)
-        no_more_text = font.render("No more locations!", True, BLACK)
+        screen.fill(BLACK)
+        no_more_text = font.render("No more locations!", True, WHITE)
         screen.blit(no_more_text, (WIDTH // 2 - no_more_text.get_width() // 2, HEIGHT // 2))
         pygame.display.update()
-        pygame.time.wait(3000)  
+        pygame.time.wait(2000)
+        from main import main_menu 
+        main_menu() 
     
     pygame.quit()
     sys.exit()
 
 if __name__ == "__main__":
-    easy_mode()
+    easy_mode() 
