@@ -359,4 +359,77 @@ points = [
         "location": "Aestera Gathering Hub", 
         "correct": (1226, 520)
     },
+
+    #Coral
+    {
+        "images": "c1.jpg",
+        "location": "Coral Highlands Platform 1", 
+        "correct": (802, 833)
+    },
+    {
+        "images": "c2.jpg",
+        "location": "Coral Highlands Platform 1", 
+        "correct": (1014, 794)
+    },
+    {
+        "images": "c3.jpg",
+        "location": "Coral Highlands Platform 1", 
+        "correct": (968, 510)
+    }, #sunt obosit de aici in jos s ar putea sa fie gresite
+    {
+        "images": "c4.jpg",
+        "location": "Coral Highlands Platform 2", 
+        "correct": (532, 553)
+    },
+    {
+        "images": "c5.jpg",
+        "location": "Coral Highlands Platform 2", 
+        "correct": (593, 474)
+    },
+    {
+        "images": "c6.jpg",
+        "location": "Coral Highlands Platform 2", 
+        "correct": (752, 411)
+    },
+    {
+        "images": "c7.jpg",
+        "location": "Coral Highlands Platform 1", 
+        "correct": (842, 798)
+    },
+    {
+        "images": "c8.jpg",
+        "location": "Coral Highlands Platform 2", 
+        "correct": (931, 632)
+    },
+    {
+        "images": "c9.jpg",
+        "location": "Coral Highlands Platform 3", 
+        "correct": (1036, 509)
+    },
+    {
+        "images": "c10.jpg",
+        "location": "Coral Highlands Platform 2", 
+        "correct": (1016, 335)
+    },
+    {
+        "images": "c11.jpg",
+        "location": "Coral Highlands Platform 3", 
+        "correct": (1136, 416)
+    },
+    {
+        "images": "c12.jpg",
+        "location": "Coral Highlands Platform 3", 
+        "correct": (1186, 312)
+    },
+    {
+        "images": "c13.jpg",
+        "location": "Coral Highlands Platform 3", 
+        "correct": (1245, 447)
+    },
+    {
+        "images": "c14.jpg",
+        "location": "Coral Highlands Platform 3", 
+        "correct": (789, 630)
+    },
+
 ]
