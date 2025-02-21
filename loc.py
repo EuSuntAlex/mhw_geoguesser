@@ -22,8 +22,8 @@ locations = [
 
     {
         "images": ["./geoPhotos/a1.jpg"],
-        "options": ["Aestera", "Seliana", "Research Base", "Aestera GatheringHub", "Guiding Lands", "Hoarfrost Reach"],
-        "correct": "Aestera"
+        "options": ["Astera", "Seliana", "Research Base", "Astera GatheringHub", "Guiding Lands", "Hoarfrost Reach"],
+        "correct": "Astera"
     },
     {
         "images": ["./geoPhotos/c1.jpg"],
@@ -37,7 +37,7 @@ locations = [
     },
     {
         "images": ["./geoPhotos/se1.jpg"],
-        "options":  ["Aestera", "Seliana", "Research Base", "Aestera GatheringHub", "Guiding Lands", "Hoarfrost Reach"],
+        "options":  ["Astera", "Seliana", "Research Base", "Astera GatheringHub", "Guiding Lands", "Hoarfrost Reach"],
         "correct": "Seliana"
     },
     {

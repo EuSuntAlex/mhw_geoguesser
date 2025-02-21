@@ -1,4 +1,17 @@
+zones = {"Astera": ["", "Gathering Hub"],
+         "Research Base": ["Platform 1", "Platform 2", "Platform 3"],
+          "Elder's Recess": ["Platform 1", "Platform 2"],
+            "Hoarfrost Reach" : ["Platform 1", "Platform 2"],
+              "Rotten Vale" : ["Platform 1", "Platform 2", "Platform 3"],
+                "Seliana":  ["", "Gathering Hub"],
+                  "Coral Highlands" : ["Platform 1", "Platform 2", "Platform 3"],
+                    "Ancient Forest": ["Platform 1", "Platform 2", "Platform 3"],
+                      "Wildspire Waste":["Platform 1", "Platform 2", "Platform 3"]}
+
 points = [
+
+    #Winter 
+
     {
         "images": "1_1.jpg",
         "location": "Elder's Recess Platform 2", 
@@ -116,6 +129,7 @@ points = [
         "correct": (999, 324)
     },
 
+    #Rotten V
 
     {
         "images": "rv1.jpg",
@@ -199,7 +213,7 @@ points = [
         "correct": (562, 517)
     },
 
-
+    #Elders
 
     {
         "images": "er1.jpg",
@@ -269,7 +283,7 @@ points = [
 
 
 
-
+    #Research Base
 
     {
         "images": "rb1.jpg",
@@ -298,6 +312,7 @@ points = [
     },
 
 
+    #Seliana
 
     {
         "images": "se1.jpg",
@@ -320,7 +335,7 @@ points = [
         "correct": (1055, 549)
     },
 
-    #Aestera
+    #Astera
     {
         "images": "a1.jpg",
         "location": "Astera", 
@@ -457,17 +472,12 @@ points = [
     {
         "images": "f5.jpg",
         "location": "Ancient Forest Platform 1", 
-        "correct": (739, 202)
+        "correct": (632, 315)
     },
     {
         "images": "f6.jpg",
         "location": "Ancient Forest Platform 1", 
-        "correct": (632, 318)
-    },
-    {
-        "images": "f7.jpg",
-        "location": "Ancient Forest Platform 1", 
-        "correct": (1121, 37)
+        "correct": (1125, 39)
     },
     {
         "images": "f7.jpg",
