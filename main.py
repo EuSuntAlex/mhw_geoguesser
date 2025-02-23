@@ -125,7 +125,7 @@ def main_menu():
         screen.blit(pygame.transform.scale(background_image, (WIDTH, HEIGHT)), (0, 0))
         
         draw_button(screen, start_button, BLUE, "Start Game", start_button.collidepoint(pygame.mouse.get_pos()))
-        draw_button(screen, easy_button, BLUE, "Start Easy Game", easy_button.collidepoint(pygame.mouse.get_pos()))
+        draw_button(screen, easy_button, BLUE, "Speed Run Mode", easy_button.collidepoint(pygame.mouse.get_pos()))
         draw_button(screen, cool_people_button, BLUE, "Cool People", cool_people_button.collidepoint(pygame.mouse.get_pos()))
         draw_button(screen, exit_button, BLUE, "Exit", exit_button.collidepoint(pygame.mouse.get_pos()))
         

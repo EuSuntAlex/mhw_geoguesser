@@ -597,6 +597,85 @@ points = [
         "location": "Wildspire Waste Platform 3", 
         "correct": (994, 616)
     },
-
+    {
+        "images": "w16.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (626, 419)
+    },
+    {
+        "images": "w17.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (713, 320)
+    },
+    {
+        "images": "w18.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (837, 285)
+    },
+    {
+        "images": "w19.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (794, 209)
+    },
+    {
+        "images": "w20.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (925, 196)
+    },
+    {
+        "images": "w21.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (951, 459)
+    },
+    {
+        "images": "w22.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (1195, 392)
+    },
+    {
+        "images": "w23.jpg",
+        "location": "Wildspire Waste Platform 1", 
+        "correct": (1112, 640)
+    },
+    {
+        "images": "w24.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (1197, 551)
+    },
+    {
+        "images": "w25.jpg",
+        "location": "Wildspire Waste Platform 1", 
+        "correct": (981, 726)
+    },
+    {
+        "images": "w26.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (623, 608)
+    },
+    {
+        "images": "w27.jpg",
+        "location": "Wildspire Waste Platform 3", 
+        "correct": (994, 602)
+    },
+    {
+        "images": "w28.jpg",
+        "location": "Wildspire Waste Platform 3", 
+        "correct": (1038, 655)
+    },
+    {
+        "images": "w29.jpg",
+        "location": "Wildspire Waste Platform 3", 
+        "correct": (876, 409)
+    },
+    {
+        "images": "w30.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (1199, 266)
+    },
+    {
+        "images": "w31.jpg",
+        "location": "Wildspire Waste Platform 2", 
+        "correct": (1086, 351)
+    },
 
 ]
