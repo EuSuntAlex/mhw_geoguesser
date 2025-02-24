@@ -334,6 +334,18 @@ points = [
         "location": "Seliana", 
         "correct": (1055, 549)
     },
+    {
+        "images": "se5.jpg",
+        "location": "Seliana", 
+        "correct": (1219, 564)
+    },
+    {
+        "images": "se6.jpg",
+        "location": "Seliana", 
+        "correct": (1219, 564)
+    },
+
+
 
     #Astera
     {
@@ -518,6 +530,71 @@ points = [
         "images": "f14.jpg",
         "location": "Ancient Forest Platform 2", 
         "correct": (1136, 466)
+    },
+    {
+        "images": "f15.jpg",
+        "location": "Ancient Forest Platform 3", 
+        "correct": (1125, 449)
+    },
+    {
+        "images": "f16.jpg",
+        "location": "Ancient Forest Platform 3", 
+        "correct": (1254, 375)
+    },
+    {
+        "images": "f17.jpg",
+        "location": "Ancient Forest Platform 1", 
+        "correct": (621, 920)
+    },
+    {
+        "images": "f18.jpg",
+        "location": "Ancient Forest Platform 2", 
+        "correct": (905, 353)
+    },
+    {
+        "images": "f19.jpg",
+        "location": "Ancient Forest Platform 2", 
+        "correct": (846, 419)
+    },
+    {
+        "images": "f20.jpg",
+        "location": "Ancient Forest Platform 2", 
+        "correct": (853, 451)
+    },
+    {
+        "images": "f21.jpg",
+        "location": "Ancient Forest Platform 2", 
+        "correct": (881, 484)
+    },
+    {
+        "images": "f22.jpg",
+        "location": "Ancient Forest Platform 2", 
+        "correct": (889, 499)
+    },
+    {
+        "images": "f23.jpg",
+        "location": "Ancient Forest Platform 1", 
+        "correct": (1044, 314)
+    },
+    {
+        "images": "f24.jpg",
+        "location": "Ancient Forest Platform 2", 
+        "correct": (1062, 351)
+    },
+    {
+        "images": "f25.jpg",
+        "location": "Ancient Forest Platform 3", 
+        "correct": (1079, 447)
+    },
+    {
+        "images": "f26.jpg",
+        "location": "Ancient Forest Platform 3", 
+        "correct": (1114, 414)
+    },
+    {
+        "images": "f27.jpg",
+        "location": "Ancient Forest Platform 2", 
+        "correct": (1188, 392)
     },
 
     #Wildspire

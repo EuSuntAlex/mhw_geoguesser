@@ -121,7 +121,41 @@ locations = [
         "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
         "correct": "Wildspire Waste"
     },
-    
+    {
+        "images": ["./geoPhotos/se5.jpg"],
+        "options":  ["Astera", "Seliana", "Research Base", "Astera GatheringHub", "Guiding Lands", "Hoarfrost Reach"],
+        "correct": "Seliana"
+    },
+    {
+        "images": ["./geoPhotos/se6.jpg"],
+        "options":  ["Astera", "Seliana", "Research Base", "Astera GatheringHub", "Guiding Lands", "Hoarfrost Reach"],
+        "correct": "Seliana"
+    },
+    {
+        "images": ["./geoPhotos/f16.jpg"],
+        "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
+        "correct": "Ancient Forest"
+    },
+    {
+        "images": ["./geoPhotos/f18.jpg"],
+        "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
+        "correct": "Ancient Forest"
+    },
+    {
+        "images": ["./geoPhotos/f24.jpg"],
+        "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
+        "correct": "Ancient Forest"
+    },
+    {
+        "images": ["./geoPhotos/f25.jpg"],
+        "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
+        "correct": "Ancient Forest"
+    },
+    {
+        "images": ["./geoPhotos/f27.jpg"],
+        "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
+        "correct": "Ancient Forest"
+    },
 
     
 
