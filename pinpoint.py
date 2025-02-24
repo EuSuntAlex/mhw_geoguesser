@@ -350,8 +350,71 @@ points = [
         "location": "Elder's Recess Platform 1", 
         "correct": (1320, 709)
     },
-
-
+    {
+        "images": "er14.jpg",
+        "location": "Elder's Recess Platform 1", 
+        "correct": (709, 266)
+    },
+    {
+        "images": "er15.jpg",
+        "location": "Elder's Recess Platform 1", 
+        "correct": (1034, 612)
+    },
+    {
+        "images": "er16.jpg",
+        "location": "Elder's Recess Platform 1", 
+        "correct": (1105, 647)
+    },
+    {
+        "images": "er17.jpg",
+        "location": "Elder's Recess Platform 2", 
+        "correct": (920, 868)
+    },
+    {
+        "images": "er18.jpg",
+        "location": "Elder's Recess Platform 2", 
+        "correct": (905, 695)
+    },
+    {
+        "images": "er19.jpg",
+        "location": "Elder's Recess Platform 1", 
+        "correct": (922, 316)
+    },
+    {
+        "images": "er20.jpg",
+        "location": "Elder's Recess Platform 1", 
+        "correct": (870, 365)
+    },
+    {
+        "images": "er21.jpg",
+        "location": "Elder's Recess Platform 1", 
+        "correct": (787, 848)
+    },
+    {
+        "images": "er22.jpg",
+        "location": "Elder's Recess Platform 1", 
+        "correct": (1250, 806)
+    },
+    {
+        "images": "er23.jpg",
+        "location": "Elder's Recess Platform 2", 
+        "correct": (1123, 472)
+    },
+    {
+        "images": "er24.jpg",
+        "location": "Elder's Recess Platform 1", 
+        "correct": (1213, 535)
+    },
+    {
+        "images": "er25.jpg",
+        "location": "Elder's Recess Platform 2", 
+        "correct": (955, 376)
+    },
+    {
+        "images": "er26.jpg",
+        "location": "Elder's Recess Platform 1", 
+        "correct": (942, 639)
+    },
 
     #Research Base
 
@@ -413,6 +476,21 @@ points = [
         "images": "se6.jpg",
         "location": "Seliana", 
         "correct": (1219, 564)
+    },
+    {
+        "images": "se7.jpg",
+        "location": "Seliana", 
+        "correct": (1066, 732)
+    },
+    {
+        "images": "se8.jpg",
+        "location": "Seliana", 
+        "correct": (916, 601)
+    },
+    {
+        "images": "se9.jpg",
+        "location": "Seliana", 
+        "correct": (985, 714)
     },
 
 

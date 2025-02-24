@@ -211,5 +211,35 @@ locations = [
         "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
         "correct": "Coral Highlands"
     },
+    {
+        "images": ["./geoPhotos/er16.jpg"],
+        "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
+        "correct": "Elder's Recess"
+    },
+    {
+        "images": ["./geoPhotos/er15.jpg"],
+        "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
+        "correct": "Elder's Recess"
+    },
+    {
+        "images": ["./geoPhotos/er17.jpg"],
+        "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
+        "correct": "Elder's Recess"
+    },
+    {
+        "images": ["./geoPhotos/er20.jpg"],
+        "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
+        "correct": "Elder's Recess"
+    },
+    {
+        "images": ["./geoPhotos/er22.jpg"],
+        "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
+        "correct": "Elder's Recess"
+    },
+    {
+        "images": ["./geoPhotos/er26.jpg"],
+        "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
+        "correct": "Elder's Recess"
+    },
 
 ]
