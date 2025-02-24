@@ -128,6 +128,46 @@ points = [
         "location": "Hoarfrost Reach Platform 2", 
         "correct": (999, 324)
     },
+    {
+        "images": "hf15.jpg",
+        "location": "Hoarfrost Reach Platform 1", 
+        "correct": (1147, 410)
+    },
+    {
+        "images": "hf16.jpg",
+        "location": "Hoarfrost Reach Platform 2", 
+        "correct": (977, 518)
+    },
+    {
+        "images": "hf17.jpg",
+        "location": "Hoarfrost Reach Platform 2", 
+        "correct": (935, 479)
+    },
+    {
+        "images": "hf18.jpg",
+        "location": "Hoarfrost Reach Platform 2", 
+        "correct": (1110, 354)
+    },
+    {
+        "images": "hf19.jpg",
+        "location": "Hoarfrost Reach Platform 2", 
+        "correct": (1042, 269)
+    },
+    {
+        "images": "hf20.jpg",
+        "location": "Hoarfrost Reach Platform 2", 
+        "correct": (866, 507)
+    },
+    {
+        "images": "hf22.jpg",
+        "location": "Hoarfrost Reach Platform 2", 
+        "correct": (726, 787)
+    },
+    {
+        "images": "hf21.jpg",
+        "location": "Hoarfrost Reach Platform 2", 
+        "correct": (866, 507)
+    },
 
     #Rotten V
 
