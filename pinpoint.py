@@ -212,6 +212,76 @@ points = [
         "location": "Rotten Vale Platform 1", 
         "correct": (562, 517)
     },
+    {
+        "images": "rv15.jpg",
+        "location": "Rotten Vale Platform 3", 
+        "correct": (940, 683)
+    },
+    {
+        "images": "rv16.jpg",
+        "location": "Rotten Vale Platform 2", 
+        "correct": (1173, 407)
+    },
+    {
+        "images": "rv17.jpg",
+        "location": "Rotten Vale Platform 2", 
+        "correct": (1125, 505)
+    },
+    {
+        "images": "rv18.jpg",
+        "location": "Rotten Vale Platform 2", 
+        "correct": (981, 588)
+    },
+    {
+        "images": "rv19.jpg",
+        "location": "Rotten Vale Platform 3", 
+        "correct": (844, 756)
+    },
+    {
+        "images": "rv20.jpg",
+        "location": "Rotten Vale Platform 3", 
+        "correct": (818, 730)
+    },
+    {
+        "images": "rv21.jpg",
+        "location": "Rotten Vale Platform 3", 
+        "correct": (1108, 725)
+    },
+    {
+        "images": "rv22.jpg",
+        "location": "Rotten Vale Platform 3", 
+        "correct": (829, 344)
+    },
+    {
+        "images": "rv23.jpg",
+        "location": "Rotten Vale Platform 3", 
+        "correct": (1071, 356)
+    },
+    {
+        "images": "rv24.jpg",
+        "location": "Rotten Vale Platform 1", 
+        "correct": (645, 514)
+    },
+    {
+        "images": "rv25.jpg",
+        "location": "Rotten Vale Platform 1", 
+        "correct": (547, 529)
+    },
+    {
+        "images": "rv26.jpg",
+        "location": "Rotten Vale Platform 1", 
+        "correct": (813, 684)
+    },
+    {
+        "images": "rv27.jpg",
+        "location": "Rotten Vale Platform 1", 
+        "correct": (748, 427)
+    },
+    {
+        "images": "rv28.jpg",
+        "location": "Rotten Vale Platform 1", 
+        "correct": (962, 369)
+    },
 
     #Elders
 

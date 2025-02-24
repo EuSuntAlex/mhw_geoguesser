@@ -156,7 +156,31 @@ locations = [
         "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
         "correct": "Ancient Forest"
     },
-
+    {
+        "images": ["./geoPhotos/rv20.jpg"],
+        "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
+        "correct": "Rotten Vale"
+    },
+    {
+        "images": ["./geoPhotos/rv22.jpg"],
+        "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
+        "correct": "Rotten Vale"
+    },
+    {
+        "images": ["./geoPhotos/rv23.jpg"],
+        "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
+        "correct": "Rotten Vale"
+    },
+    {
+        "images": ["./geoPhotos/rv25.jpg"],
+        "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
+        "correct": "Rotten Vale"
+    },
+    {
+        "images": ["./geoPhotos/rv26.jpg"],
+        "options":  ["Ancient Forest", "Elder's Recess", "Rotten Vale", "Coral Highlands", "Wildspire Waste", "Hoarfrost Reach"],
+        "correct": "Rotten Vale"
+    },
     
 
 
