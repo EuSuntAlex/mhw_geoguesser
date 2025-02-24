@@ -448,13 +448,34 @@ points = [
         "location": "Astera", 
         "correct": (1588, 724)
     },
+    {
+        "images": "a7.jpg",
+        "location": "Astera", 
+        "correct": (1598, 732)
+    },
 
 
-    #Aestera Gathering Hub
+
+    #Astera Gathering Hub
     {
         "images": "ag1.jpg",
-        "location": "Aestera Gathering Hub", 
+        "location": "Astera Gathering Hub", 
         "correct": (1226, 520)
+    },
+    {
+        "images": "ag2.jpg",
+        "location": "Astera Gathering Hub", 
+        "correct": (1212, 518)
+    },
+    {
+        "images": "ag3.jpg",
+        "location": "Astera Gathering Hub", 
+        "correct": (1212, 518)
+    },
+    {
+        "images": "ag4.jpg",
+        "location": "Astera Gathering Hub", 
+        "correct": (1045, 337)
     },
 
     #Coral
