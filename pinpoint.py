@@ -549,6 +549,77 @@ points = [
         "location": "Coral Highlands Platform 3", 
         "correct": (789, 630)
     },
+    {
+        "images": "c15.jpg",
+        "location": "Coral Highlands Platform 2", 
+        "correct": (1058, 318)
+    },
+    {
+        "images": "c16.jpg",
+        "location": "Coral Highlands Platform 1", 
+        "correct": (1021, 755)
+    },
+    {
+        "images": "c17.jpg",
+        "location": "Coral Highlands Platform 1", 
+        "correct": (896, 822)
+    },
+    {
+        "images": "c18.jpg",
+        "location": "Coral Highlands Platform 1", 
+        "correct": (796, 840)
+    },
+    {
+        "images": "c19.jpg",
+        "location": "Coral Highlands Platform 1", 
+        "correct": (778, 899)
+    },
+    {
+        "images": "c20.jpg",
+        "location": "Coral Highlands Platform 1", 
+        "correct": (695, 609)
+    },
+    {
+        "images": "c21.jpg",
+        "location": "Coral Highlands Platform 1", 
+        "correct": (770, 679)
+    },
+    {
+        "images": "c22.jpg",
+        "location": "Coral Highlands Platform 2", 
+        "correct": (1191, 120)
+    },
+    {
+        "images": "c23.jpg",
+        "location": "Coral Highlands Platform 2", 
+        "correct": (887, 157)
+    },
+    {
+        "images": "c24.jpg",
+        "location": "Coral Highlands Platform 2", 
+        "correct": (994, 390)
+    },
+    {
+        "images": "c25.jpg",
+        "location": "Coral Highlands Platform 2", 
+        "correct": (1103, 736)
+    },
+    {
+        "images": "c26.jpg",
+        "location": "Coral Highlands Platform 2", 
+        "correct": (1057, 789)
+    },
+    {
+        "images": "c26.jpg",
+        "location": "Coral Highlands Platform 2", 
+        "correct": (1060, 786)
+    },
+    {
+        "images": "c27.jpg",
+        "location": "Coral Highlands Platform 2", 
+        "correct": (1105, 760)
+    },
+
 
 
     #Forest
