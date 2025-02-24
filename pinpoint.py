@@ -3,7 +3,7 @@ zones = {"Astera": ["", "Gathering Hub"],
           "Elder's Recess": ["Platform 1", "Platform 2"],
             "Hoarfrost Reach" : ["Platform 1", "Platform 2"],
               "Rotten Vale" : ["Platform 1", "Platform 2", "Platform 3"],
-                "Seliana":  ["", "Gathering Hub"],
+                "Seliana":  [""],
                   "Coral Highlands" : ["Platform 1", "Platform 2", "Platform 3"],
                     "Ancient Forest": ["Platform 1", "Platform 2", "Platform 3"],
                       "Wildspire Waste":["Platform 1", "Platform 2", "Platform 3"]}
