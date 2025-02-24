@@ -2,6 +2,7 @@ import pygame
 import sys
 import easy_mode
 import geoguessr
+import howToPlay
 import os
 
 def resource_path(relative_path):
@@ -55,11 +56,13 @@ def draw_button(surface, rect, color, text, hover=False):
     surface.blit(text_surface, text_rect)
 
 button_width, button_height = 250, 60  # Butoane mai mari
-start_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 - 100, button_width, button_height)
-easy_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2, button_width, button_height)
-cool_people_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 + 100, button_width, button_height)
-exit_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 + 200, button_width, button_height)
+start_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 - 150, button_width, button_height)
+easy_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 - 50, button_width, button_height)
+how_to_play_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 + 50, button_width, button_height)
+cool_people_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 + 150, button_width, button_height)
+exit_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 + 250, button_width, button_height)
 back_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT - 100, button_width, button_height)
+
 
 cool_people_data = [
     {"name": "Vycery", "desc": "The GOAT of Monster Hunter: https://www.twitch.tv/vycery"},
@@ -127,6 +130,7 @@ def main_menu():
         draw_button(screen, start_button, BLUE, "Start Game", start_button.collidepoint(pygame.mouse.get_pos()))
         draw_button(screen, easy_button, BLUE, "Speed Run Mode", easy_button.collidepoint(pygame.mouse.get_pos()))
         draw_button(screen, cool_people_button, BLUE, "Cool People", cool_people_button.collidepoint(pygame.mouse.get_pos()))
+        draw_button(screen, how_to_play_button, BLUE, "How to Play", how_to_play_button.collidepoint(pygame.mouse.get_pos()))
         draw_button(screen, exit_button, BLUE, "Exit", exit_button.collidepoint(pygame.mouse.get_pos()))
         
         for event in pygame.event.get():
@@ -139,10 +143,11 @@ def main_menu():
                 WIDTH, HEIGHT = event.w, event.h
                 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
                 
-                start_button.center = (WIDTH // 2, HEIGHT // 2 - 100)
-                easy_button.center = (WIDTH // 2, HEIGHT // 2)
-                cool_people_button.center = (WIDTH // 2, HEIGHT // 2 + 100)
-                exit_button.center = (WIDTH // 2, HEIGHT // 2 + 200)
+                start_button.center = (WIDTH // 2, HEIGHT // 2 - 150)
+                easy_button.center = (WIDTH // 2, HEIGHT // 2 - 50)
+                how_to_play_button.center = (WIDTH // 2, HEIGHT // 2 + 50)
+                cool_people_button.center = (WIDTH // 2, HEIGHT // 2 + 150)
+                exit_button.center = (WIDTH // 2, HEIGHT // 2 + 250)
                 back_button.center = (WIDTH // 2, HEIGHT - 100)
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if start_button.collidepoint(event.pos):
@@ -151,6 +156,8 @@ def main_menu():
                     easy_mode.easy_mode()
                 if cool_people_button.collidepoint(event.pos):
                     cool_people_screen()
+                if how_to_play_button.collidepoint(event.pos):
+                    howToPlay.how_to_play(screen, WIDTH, HEIGHT)
                 if exit_button.collidepoint(event.pos):
                     pygame.quit()
                     sys.exit()

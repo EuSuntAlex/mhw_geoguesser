@@ -34,6 +34,9 @@ def easy_mode():
     background = pygame.image.load(resource_path("geo_bckg.png"))
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))  
     
+    timesup_image = pygame.image.load(resource_path("timesup.jpg"))
+    timesup_image = pygame.transform.scale(timesup_image, (WIDTH, HEIGHT))  
+    
     running = True
     score = 0  
     used_locations = []
@@ -121,8 +124,9 @@ def easy_mode():
 
             
             if remaining_time <= 0:
-                screen.fill(BLACK)
-                draw_text(screen, "Time's up! Game Over.", font, WHITE, WIDTH // 2, HEIGHT // 2, shadow_color=BLACK)
+                
+                screen.blit(timesup_image, (0, 0))
+                draw_text(screen,  f"Time is up! Score: {score}", font, WHITE, WIDTH // 2, HEIGHT // 2, shadow_color=BLACK)
                 pygame.display.update()
                 pygame.time.wait(2000)
                 from main import main_menu 
@@ -150,7 +154,7 @@ def easy_mode():
                             if selected_option == target["correct"]:
                                 if attempts == 0:
                                     score += 2  
-                                    timer += 4000 
+                                    timer += 3000 
                                 else:
                                     score += 1  
                                     timer += 2000  
@@ -169,8 +173,8 @@ def easy_mode():
                                 zoom_factor = max(1.0, zoom_factor - 1) 
                                 
                                 if attempts >= 3:  
-                                    screen.fill(BLACK)
-                                    draw_text(screen, "Game Over! You've lost.", font, WHITE, WIDTH // 2, HEIGHT // 2, shadow_color=BLACK)
+                                    screen.blit(timesup_image, (0, 0))
+                                    draw_text(screen, f"Game Over! Score: {score}.", font, WHITE, WIDTH // 2, HEIGHT // 2, shadow_color=BLACK)
                                     pygame.display.update()
                                     pygame.time.wait(1500) 
                                     from main import main_menu 
@@ -187,7 +191,7 @@ def easy_mode():
                 break  
     
     if len(used_locations) == len(loc.locations):
-        screen.fill(BLACK)
+        screen.blit(timesup_image, (0, 0))
         draw_text(screen, f"Final Score: {score}", font, WHITE, WIDTH // 2, HEIGHT // 2, shadow_color=BLACK)
         pygame.display.update()
         pygame.time.wait(2000)
