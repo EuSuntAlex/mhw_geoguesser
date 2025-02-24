@@ -156,18 +156,15 @@ points = [
     {
         "images": "hf20.jpg",
         "location": "Hoarfrost Reach Platform 2", 
-        "correct": (866, 507)
-    },
-    {
-        "images": "hf22.jpg",
-        "location": "Hoarfrost Reach Platform 2", 
         "correct": (726, 787)
     },
     {
         "images": "hf21.jpg",
         "location": "Hoarfrost Reach Platform 2", 
-        "correct": (866, 507)
+        "correct": (855, 507)
     },
+    
+
 
     #Rotten V
 
