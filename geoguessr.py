@@ -84,7 +84,7 @@ def draw_button(surface, rect, text, texture, texture_hover, hover=False):
     total_height = len(lines) * font.get_height()  # total height of the text
     y_offset = (rect.height - total_height) // 2  # vertical centering
     
-    y_offset -= font.get_height() // 2  # fine adjustment for perfect centering
+    y_offset -= font.get_height() // 2 
     y_offset -= 9
     
     for line in lines:
@@ -458,7 +458,7 @@ def geoguessr_mode():
         initial_image = pygame.transform.smoothscale(initial_image, (1344, 756))  # Scalare la 1344x756
     else:
         initial_image = None
-    right_ui_x = WIDTH * 0.862  
+    right_ui_x = WIDTH * 0.863  
     right_ui_y = HEIGHT * 0.133  
     while running:
         screen.fill(WHITE)
@@ -476,13 +476,12 @@ def geoguessr_mode():
         if show_zones:
             num_columns = 5 
             button_height = 80 
-            button_spacing = 20
+            button_spacing = 14
             
-            max_text_width = max(font.size(zone)[0] for zone in game_state["zone_posibile"])
             button_width = 260 
             
-            start_x = (WIDTH - (num_columns * (button_width + button_spacing))) // 2
-            start_y = HEIGHT - 200 
+            start_x = (WIDTH - (num_columns * (button_width + button_spacing))) // 2 + 7
+            start_y = HEIGHT - 230
 
             buttons = []
             for i, zone in enumerate(game_state["zone_posibile"]):
@@ -534,7 +533,7 @@ def geoguessr_mode():
                 total_width = total_buttons * button_width + (total_buttons - 1) * button_spacing
                 
                 start_x = (WIDTH - total_width) // 2
-                start_y = HEIGHT - 150  
+                start_y = HEIGHT - 230  
                 
                 buttons = []
                 for i, platform in enumerate(platforms):
