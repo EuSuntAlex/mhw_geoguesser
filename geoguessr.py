@@ -230,8 +230,6 @@ def geoguessr_mode():
     powerup_icon = pygame.transform.scale(powerup_icon, (50, 50))
     powerup_button_rect = pygame.Rect(powerup_x, powerup_y, 50, 50)
 
-    # debugging: display power-up button position
-    print(f"Powerup button position: {powerup_button_rect.topleft}")
 
     # variables for managing the power-up
     powerup_available = True  # power-up is available
@@ -264,7 +262,6 @@ def geoguessr_mode():
         
         if skipped == False:
             skipped = True
-            print("CACA")
             nonlocal score
             # 95% chance to skip a round, 5% chance to skip a round and add 4000 points
             if random.random() < 0.95:
@@ -299,12 +296,10 @@ def geoguessr_mode():
 
 
     def next_round():
-        print("FAC PIPI")
         nonlocal current_round, current_point, initial_image, selected_zone, selected_platform, user_clicks, show_feedback, correct_location, correct_point, user_location, user_coords, show_zones, show_platforms, show_map, running, bow_timer_active, powerup_active, powerup_visible, powerup_used
 
         current_round += 1
         if current_round >= game_state["total_rounds"]:  
-            print(f"Game Over! Final Score: {int(score)}")
             running = False
         else:
             current_point = get_random_point()
@@ -550,7 +545,11 @@ def geoguessr_mode():
         
         
         if not show_map:
-            draw_text(screen, f"Score: {int(score)}", font, WHITE, WIDTH * 0.902, HEIGHT * 0.165, shadow_color=BLACK)
+            # calculate the x position for the score text based on its length
+            score_text = f"Score: {int(score)}"
+            text_width = font.size(score_text)[0]
+            score_x = WIDTH * 0.902 - (text_width - font.size("Score: 0")[0]) * 0.7  # adjust x position based on text length
+            draw_text(screen, score_text, font, WHITE, score_x, HEIGHT * 0.165, shadow_color=BLACK)
             draw_text(screen, f"Round: {current_round + 1}/{game_state['total_rounds']}", font, WHITE, WIDTH * 0.89, HEIGHT * 0.269, shadow_color=BLACK)
         
         if bow_timer_active:
