@@ -29,7 +29,7 @@ def easy_mode():
     BLUE = (70, 130, 180)
     RED = (255, 0, 0)
     
-    font = pygame.font.Font(None, 40)
+    font = pygame.font.Font(resource_path("./fonts/Familiar Pro-Bold.otf"), 29)
     
     background = pygame.image.load(resource_path("geo_bckg.png"))
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))  
