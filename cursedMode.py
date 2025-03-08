@@ -23,7 +23,7 @@ YELLOW = (255, 255, 0)  # color for glow
 
 font = pygame.font.Font(resource_path("./fonts/Familiar Pro-Bold.otf"), 25)
 logo = pygame.image.load(resource_path("./ui/Logo Cropped.png"))
-single_image = pygame.image.load(resource_path("./ui/single.png"))  # load single.png image
+single_image = pygame.image.load(resource_path("./ui/cursedMode.png"))  # load single.png image
 single_image = pygame.transform.scale(single_image, (244, 97))  # scale image to 244x97
 back_map_img = pygame.image.load(resource_path("./ui/backMap.png"))
 back_map_hover_img = pygame.image.load(resource_path("./ui/backMapHover.png"))
@@ -93,39 +93,6 @@ def draw_button(surface, rect, text, texture, texture_hover, hover=False):
         surface.blit(text_surface, text_rect)
         y_offset += font.get_height()  # move to the next line
 
-def draw_text_in_box(surface, text, color, x, y, line_spacing=10):
-
-    font = pygame.font.Font(resource_path("./fonts/Familiar Pro-Bold.otf"), 19)
-    box_width = 230  
-    box_height = 300  
-
-    words = text.split(" ")  
-    lines = []  
-    current_line = "" 
-
-    for word in words:
-        test_line = current_line + " " + word if current_line else word
-        test_width, _ = font.size(test_line)  
-
-        if test_width <= box_width:
-            current_line = test_line
-        else:
-            lines.append(current_line)
-            current_line = word
-
-    if current_line:
-        lines.append(current_line)
-
-    current_y = y  
-    for line in lines:
-        if current_y + font.get_height() > y + box_height:
-            break 
-
-        text_surface = font.render(line, True, color)
-        surface.blit(text_surface, (x, current_y))
-
-        current_y += font.get_height() + line_spacing
-
 def draw_history(surface, history, WIDTH, HEIGHT):
     history_x = WIDTH * 0.01  # x position of the history_img
     history_y = HEIGHT * 0.13 + logo.get_height()  # y position of the history_img
@@ -147,6 +114,8 @@ def draw_history(surface, history, WIDTH, HEIGHT):
         # add text "Round X: Score Y"
         text = f"{i + 1}: {int(score)}"
         draw_text(surface, text, font, WHITE, history_x + 10, item_y + 4, shadow_color=BLACK)
+
+
 
 def geoguessr_mode():
     screen = pygame.display.set_mode((0, 0), pygame.RESIZABLE)
@@ -191,11 +160,7 @@ def geoguessr_mode():
 
     sure_image = pygame.image.load(resource_path("./ui/sure.png"))
     sure_image = pygame.transform.scale(sure_image, (298, 98))  # resize to 298x98
-
-    # function to check if the power-up is HH, GL, CB, or BOW
-    def is_special_powerup(powerup_name):
-        return powerup_name in ["HH", "GL", "CB", "bow"]
-
+    
     # basic variables
     game_state = {
         "numar_puncte_harta": 1,
@@ -211,208 +176,10 @@ def geoguessr_mode():
         "total_rounds": 10,  # total number of rounds (initially 10)
         "wrong_guesses": 0,  # number of consecutive wrong guesses
         "correct_guesses": 0,  # number of consecutive correct rounds
-        "hh_rounds_left": 0,  # rounds left for HH power-up
-        "gl_rounds_left": 0,  # rounds left for GL power-up
-        "cb_active": False,  # check if CB power-up is active
-        "cb_wrong_guesses_since_activation": 0,  # counter for wrong guesses since CB activation
-        "active_powerup": None,  # active power-up (only one at a time),
-        "description": None,
     }
-
-    # list of power-ups
-    powerups = [
-        {"name": "GS", "icon": "gs.png", "effect": lambda: game_state.update({"scor_multiplier": 1.5}),
-          "desc" : "Great Sword goes straight into True Charged Slash, giving you a x1.5 points multiplier."},
-        {"name": "LS", "icon": "ls.png", "effect": lambda: random.choices(
-            [lambda: game_state.update({"scor_multiplier": 2}),
-             lambda: None,
-             lambda: game_state.update({"scor_bonus": -1000})],
-            weights=[55, 35, 10])[0](),
-            "desc": "Long Sword unleashes Iai Spirit Slash. This blessing has a 55% chance of doubling your points, 35% chance of whiffing completely, and 10% chance of making you cart, which will cost 1000 points." 
-            },
-        {"name": "IG", "icon": "ig.png", "effect": lambda: game_state.update({"zone_posibile": [
-            zone for zone in game_state["zone_posibile"] if zone != current_point["location"]][:len(game_state["zone_posibile"]) // 2]}),
-            "desc": "Insect Glaive will send its insect to scout out wrong locations, halving the possible zones"},
-        {"name": "SNS", "icon": "sns.png", "effect": lambda: game_state.update({"numar_puncte_harta": 3, "scor_multiplier": 0.8}),
-         "desc": "Sword and Shield will perform a Perfect Rush, giving you the option to place 3 guesses on the map, and only the one closest to the correct location will count. Your score has a x0.8 multiplier penalty."},
-        {"name": "SAxe", "icon": "saxe.png", "effect": lambda: game_state.update({"diametru": 20}),
-         "desc":"Switch Axe will morph the guess area into a larger one, allowing you to hit the perfect spot."
-         },
-        {"name": "db", "icon": "db.png", "effect": lambda: game_state.update({"numar_puncte_harta": 2}),
-         "desc": "Dual Blades unlocks Demon Mode, allowing you to place 2 guesses on the map, and only the one closest to the correct location will count."},
-        {"name": "bow", "icon": "bow.png", "effect": lambda: start_timer(5),
-         "desc":"Bow will launch a flurry of arrows, allowing you to place 3 guesses on the map, and only the one closest to the correct location will count. You only get 5 seconds after activation to place all 3 guesses."},
-        {"name": "lbg", "icon": "lbg.png", "effect": lambda: show_correct_zone(),
-         "desc": "Light Bowgun will highlight the correct answer for a fraction of a second."},
-        {"name": "HBG", "icon": "hbg.png", "effect": lambda: game_state.update({"diametru": 5, "scor_multiplier": 1.4}), 
-         "desc": "Heavy Bowgun equips its scope, decreasing the size of the perfect zone, but applying a x1.4 multiplier to your score."},
-        {"name": "Hammer", "icon": "ham.png", "effect": lambda: handle_hammer_effect(),
-         "desc": "Hammer bonks the location, instantly skipping it. Upon activating this blessing, there's a 5% chance the bonk actually awards 4000 points."},  # hammer effect is handled by handle_hammer_effect
-        {"name": "CB", "icon": "cb.png", "effect": lambda: game_state.update({"cb_active": True, "cb_wrong_guesses_since_activation": 0}),
-         "desc": "Charge Blade powers up when you give a wrong answer. After 3 mistakes it unleashes that power and provides you with an extra turn."},  # activate CB and reset counter
-        {"name": "HH", "icon": "hh.png", "effect": lambda: game_state.update({"hh_rounds_left": 3}),
-         "desc": "Hunting Horn will doot an additional 450 points on your next 3 guesses. This blessing is only applied to correct answers, but will disappear after 3 turns."},
-        {"name": "GL", "icon": "gl.png", "effect": lambda: game_state.update({"gl_rounds_left": 3}),
-         "desc": "Gunlance will explode for an additional 2000 points if you get 3 correct answers in a row."},
-        {"name": "Lance", "icon": "lance.png", "effect": lambda: None,
-         "desc": "Lance will guard against the next wrong answer."},  # effect is handled manually in the code
-    ]
 
     # list for round history
     history = []
-
-    # choose a random power-up at the start of the game
-    current_powerup = random.choice(powerups)
-    game_state["active_powerup"] = current_powerup["name"]  # set the active power-up
-    game_state["description"] = current_powerup["desc"]
-
-    # decide which UI image to use
-    if is_special_powerup(game_state["active_powerup"]):
-        right_ui_image = right_ui_split  # use rightUISplit.png for special power-ups
-        powerup_x = WIDTH * 0.878  # position for right_ui_split
-    else:
-        right_ui_image = right_ui  # use rightUI.png for other power-ups
-        powerup_x = WIDTH * 0.9118  # position for right_ui
-
-    powerup_y = HEIGHT * 0.365  # vertical position of the power-up icon
-
-    # load power-up icon
-    powerup_icon = pygame.image.load(resource_path(os.path.join("weapons", current_powerup["icon"])))
-    powerup_icon = pygame.transform.scale(powerup_icon, (50, 50))
-    powerup_button_rect = pygame.Rect(powerup_x, powerup_y, 50, 50)
-
-
-    # variables for managing the power-up
-    powerup_available = True  # power-up is available
-    powerup_active = False  # power-up is active
-    powerup_visible = True  # power-up icon is visible
-    powerup_used = False  # power-up has been used (clicked by the user)
-
-    # variables for the "bow" power-up timer
-    bow_timer_active = False
-    bow_timer_end = 0
-
-    # function for the "bow" power-up timer
-    def start_timer(seconds):
-        nonlocal bow_timer_active, bow_timer_end
-        bow_timer_active = True
-        bow_timer_end = pygame.time.get_ticks() + seconds * 1000
-        game_state["numar_puncte_harta"] = 3  # set the number of points to 3
-
-    # function to display the correct zone (power-up "lbg")
-    def show_correct_zone():
-        dfr_positions = [(WIDTH // 2, HEIGHT - 50), (WIDTH // 4, HEIGHT - 50), (WIDTH // 4, HEIGHT - 250), ((WIDTH // 2, HEIGHT - 250))]
-        x,y = random.choice(dfr_positions)
-        draw_text(screen, f"Correct Zone: {current_point['location']}", font, WHITE, x, HEIGHT - 250, shadow_color=BLACK)
-        pygame.display.update()
-        pygame.time.wait(50)  # display text for 0.5 seconds
-
-    # function to handle the hammer effect
-    def handle_hammer_effect():
-        nonlocal skipped, powerup_active, powerup_visible, powerup_used
-        
-        if skipped == False:
-            skipped = True
-            nonlocal score
-            # 95% chance to skip a round, 5% chance to skip a round and add 4000 points
-            if random.random() < 0.95:
-                history.append((0, 1))  # add 0 points but mark as correct round (green)
-            else:
-                score += 4000  # add 4000 points
-                history.append((4000, 1))  # add 4000 points and mark as correct round (green)
-            game_state["total_rounds"] = 11  # add an extra round
-            game_state["active_powerup"] = None
-            game_state["description"] = ""
-            powerup_active = False
-            powerup_visible = False
-            powerup_used = False  # reset usage state
-            next_round()  # skip to the next round
-        game_state["description"] = ""
-        game_state["active_powerup"] = None
-        powerup_active = False
-        powerup_visible = False
-        powerup_used = False  # reset usage state
-
-
-    # reset funct
-    def reset_game_state():
-        game_state.update({
-            "numar_puncte_harta": 1,
-            "scor_multiplier": 1,
-            "scor_bonus": 0,
-            "elimina_platforme_gresite": False,
-            "timer_powerup": 0,
-            "sari_locatie": False,
-            "diametru": 10,
-            "zone_posibile": list(zones.keys()),  # resets zones
-        })
-
-
-    def next_round():
-        nonlocal current_round, current_point, initial_image, selected_zone, selected_platform, user_clicks, show_feedback, correct_location, correct_point, user_location, user_coords, show_zones, show_platforms, show_map, running, bow_timer_active, powerup_active, powerup_visible, powerup_used
-
-        current_round += 1
-        if current_round >= game_state["total_rounds"]:  
-            running = False
-        else:
-            current_point = get_random_point()
-            if current_point:
-                # loads img 1344x756
-                initial_image = pygame.image.load(resource_path(os.path.join("geoPhotos", current_point["images"])))
-                initial_image = pygame.transform.smoothscale(initial_image, (1344, 756))  # Scalare la 1344x756
-                selected_zone = None
-                selected_platform = None
-                user_clicks = []
-                show_feedback = False
-                correct_location = None
-                correct_point = None
-                user_location = None
-                user_coords = None
-                show_zones = True
-                show_platforms = False
-                show_map = False
-
-
-                reset_game_state()
-
-                # stop timer"bow"
-                bow_timer_active = False
-
-                if game_state["hh_rounds_left"] > 0:
-                    game_state["hh_rounds_left"] -= 1
-                if game_state["gl_rounds_left"] > 0:
-                    game_state["gl_rounds_left"] -= 1
-
-                # if powerup expires
-                if game_state["active_powerup"] in ["HH", "GL", "CB"]:
-                    if game_state["active_powerup"] == "CB":
-
-                        if game_state["cb_wrong_guesses_since_activation"] >= 3:
-                            game_state["total_rounds"] = 11 
-                            game_state["cb_wrong_guesses_since_activation"] = 0  
-                            game_state["active_powerup"] = None  # Dezactivează power-up-ul
-                            game_state["description"] = ""
-                            powerup_active = False  
-                            powerup_visible = False 
-                            powerup_used = False  
-
-                    else:
-                        if game_state[f"{game_state['active_powerup'].lower()}_rounds_left"] <= 0:
-                            game_state["active_powerup"] = None
-                            game_state["description"] = ""  
-                            powerup_active = False  
-                            powerup_visible = False  
-                else:
-                    # dezactivation of normal powerups
-                    if powerup_used:  
-                        game_state["active_powerup"] = None
-                        game_state["description"] = ""
-                        powerup_active = False
-                        powerup_visible = False
-                        powerup_used = False 
-            else:
-                print("No more Locations!")
-                running = False
 
     background = pygame.image.load(resource_path("./ui/caca.png"))
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
@@ -435,14 +202,33 @@ def geoguessr_mode():
     user_coords = None
     show_confirmation = False
 
-    # Lance state copy
-    saved_round_state = {
-        "initial_image": None,
-        "current_round": 0,
-        "current_point": None,
-        "used_points": []
-    }
+    def next_round():
+        nonlocal current_round, current_point, initial_image, selected_zone, selected_platform, user_clicks, show_feedback, correct_location, correct_point, user_location, user_coords, show_zones, show_platforms, show_map, running
 
+        current_round += 1
+        if current_round >= game_state["total_rounds"]:  
+            running = False
+        else:
+            current_point = get_random_point()
+            if current_point:
+                # loads img 1344x756
+                initial_image = pygame.image.load(resource_path(os.path.join("geoPhotos", current_point["images"])))
+                initial_image = pygame.transform.smoothscale(initial_image, (1344, 756))  # Scalare la 1344x756
+                selected_zone = None
+                selected_platform = None
+                user_clicks = []
+                show_feedback = False
+                correct_location = None
+                correct_point = None
+                user_location = None
+                user_coords = None
+                show_zones = True
+                show_platforms = False
+                show_map = False
+            else:
+                print("No more Locations!")
+                running = False
+    
     def get_random_point():
         available_points = [p for p in points if p not in used_points]
         if not available_points:
@@ -468,7 +254,7 @@ def geoguessr_mode():
 
         draw_history(screen, history, WIDTH, HEIGHT)
 
-        screen.blit(right_ui_image, (right_ui_x, right_ui_y))  
+        screen.blit(right_ui, (right_ui_x, right_ui_y))  
 
         if initial_image:
             screen.blit(initial_image, (WIDTH // 2 - initial_image.get_width() // 2, 30))
@@ -505,22 +291,6 @@ def geoguessr_mode():
                 screen.blit(back_btn_img_zones_hover, back_button.topleft)  
             else:
                 screen.blit(back_btn_img_zones, back_button.topleft)
-            
-            if powerup_visible:
-                draw_text_in_box(screen,game_state["description"], WHITE, WIDTH * 0.9118 - 88, powerup_y + 103)
-                if powerup_active:
-                    glow_icon = pygame.image.load(resource_path(os.path.join("weapons", f"{current_powerup['name'].lower()}glow.png")))
-                    glow_icon = pygame.transform.scale(glow_icon, (50, 50))
-                    screen.blit(glow_icon, (powerup_x, powerup_y))
-                    if game_state["active_powerup"] == "CB":
-                        draw_text(screen, str(game_state["cb_wrong_guesses_since_activation"]), font, WHITE, powerup_x + 150, powerup_y + 10, shadow_color=BLACK)
-                    elif game_state["active_powerup"] == "HH":
-                        draw_text(screen, str(game_state["hh_rounds_left"]), font, WHITE, powerup_x + 150, powerup_y + 10, shadow_color=BLACK)
-                    elif game_state["active_powerup"] == "GL":
-                        draw_text(screen, str(game_state["gl_rounds_left"]), font, WHITE, powerup_x + 150, powerup_y + 10, shadow_color=BLACK)
-                else:
-                    screen.blit(powerup_icon, (powerup_x, powerup_y))
-
                 
         elif show_platforms:
             if selected_zone:
@@ -558,22 +328,6 @@ def geoguessr_mode():
                     screen.blit(back_btn_img_platforms_hover, back_button.topleft)  
                 else:
                     screen.blit(back_btn_img_platforms, back_button.topleft)
-                
-                if powerup_visible:
-                    draw_text_in_box(screen,game_state["description"], WHITE, WIDTH * 0.9118 - 88, powerup_y + 103)
-                    if powerup_active:
-                        glow_icon = pygame.image.load(resource_path(os.path.join("weapons", f"{current_powerup['name'].lower()}glow.png")))
-                        glow_icon = pygame.transform.scale(glow_icon, (50, 50))
-                        screen.blit(glow_icon, (powerup_x, powerup_y))
-                    else:
-                        screen.blit(powerup_icon, (powerup_x, powerup_y))
-
-                    if game_state["active_powerup"] == "CB" and powerup_active and powerup_visible:
-                        draw_text(screen, str(game_state["cb_wrong_guesses_since_activation"]), font, WHITE, powerup_x + 150, powerup_y + 10, shadow_color=BLACK)
-                    elif game_state["active_powerup"] == "HH" and powerup_active and powerup_visible:
-                        draw_text(screen, str(game_state["hh_rounds_left"]), font, WHITE, powerup_x + 150, powerup_y + 10, shadow_color=BLACK)
-                    elif game_state["active_powerup"] == "GL" and powerup_active and powerup_visible:
-                        draw_text(screen, str(game_state["gl_rounds_left"]), font, WHITE, powerup_x + 150, powerup_y + 10, shadow_color=BLACK)
         elif show_map:
             if selected_platform:
                 map_screen = open_map(selected_platform + ".jpg") 
@@ -610,14 +364,6 @@ def geoguessr_mode():
             score_x = WIDTH * 0.902 - (text_width - font.size("Score: 0")[0]) * 0.7  # adjust x position based on text length
             draw_text(screen, score_text, font, WHITE, score_x, HEIGHT * 0.165, shadow_color=BLACK)
             draw_text(screen, f"Round: {current_round + 1}/{game_state['total_rounds']}", font, WHITE, WIDTH * 0.89, HEIGHT * 0.269, shadow_color=BLACK)
-        
-        if bow_timer_active:
-            time_left = max(0, (bow_timer_end - pygame.time.get_ticks()) // 1000)
-            draw_text(screen, f"Time left: {time_left}", font, WHITE, powerup_x + 150, powerup_y + 10, shadow_color=BLACK)
-            if pygame.time.get_ticks() >= bow_timer_end:
-                bow_timer_active = False
-                game_state["description"] = ""
-                next_round()  
         
         if show_feedback:
             feedback_text = f"Your choice: {user_location} ({user_coords}) | Correct: {correct_location} ({correct_point})"
@@ -684,12 +430,6 @@ def geoguessr_mode():
                             else:
                                 round_score = max(0, 5000 - dist * 7) 
                             
-                            
-                            if game_state["hh_rounds_left"] > 0:
-                                round_score += 150 
-                            if game_state["gl_rounds_left"] > 0 and game_state["correct_guesses"] >= 2:
-                                round_score += 2500  
-                            
                             score += int(round(round_score * game_state["scor_multiplier"])) + game_state["scor_bonus"]
                             show_feedback = True
                             correct_location = current_point["location"]
@@ -709,70 +449,24 @@ def geoguessr_mode():
 
                             game_state["correct_guesses"] += 1
                         else:
-                            if game_state["active_powerup"] == "Lance":
-                                saved_round_state["initial_image"] = initial_image
-                                saved_round_state["current_round"] = current_round
-                                saved_round_state["current_point"] = current_point
-                                saved_round_state["used_points"] = used_points.copy()
+                            correct_x = int(current_point["correct"][0] * (WIDTH / 1920))
+                            correct_y = int(current_point["correct"][1] * (HEIGHT / 1080))
+                            correct_point = (correct_x, correct_y)
+                            correct_location = current_point["location"]
 
-                                initial_image = saved_round_state["initial_image"]
-                                current_round = saved_round_state["current_round"]
-                                current_point = saved_round_state["current_point"]
-                                used_points = saved_round_state["used_points"].copy()
+                            draw_text(screen, "Wrong Location!", font, RED, WIDTH // 2, HEIGHT // 2, shadow_color=BLACK)
+                            pygame.display.update()
+                            pygame.time.wait(1000) 
 
-                                game_state["active_powerup"] = None
-                                game_state["description"] = ""
-                                powerup_active = False
-                                powerup_visible = False
+                            show_feedback = True
+                            user_location = selected_platform
+                            user_coords = user_clicks
 
-                                show_map = False
-                                show_platforms = False
-                                show_zones = True
-                                selected_zone = None
-                                selected_platform = None
-                                user_clicks = []
-                                show_feedback = False
-                                correct_location = None
-                                correct_point = None
-                                user_location = None
-                                user_coords = None
+                            history.append((0, 0))  
 
-                                continue  
-                            else:
-                                correct_x = int(current_point["correct"][0] * (WIDTH / 1920))
-                                correct_y = int(current_point["correct"][1] * (HEIGHT / 1080))
-                                correct_point = (correct_x, correct_y)
-                                correct_location = current_point["location"]
-
-                                draw_text(screen, "Wrong Location!", font, RED, WIDTH // 2, HEIGHT // 2, shadow_color=BLACK)
-                                pygame.display.update()
-                                pygame.time.wait(1000) 
-
-                                show_feedback = True
-                                user_location = selected_platform
-                                user_coords = user_clicks
-
-                                history.append((0, 0))  
-
-                                game_state["correct_guesses"] = 0
-                                game_state["wrong_guesses"] += 1
-                                if game_state["active_powerup"] == "CB":
-                                    game_state["cb_wrong_guesses_since_activation"] += 1
-                                    if game_state["cb_wrong_guesses_since_activation"] >= 3:
-                                        game_state["total_rounds"] = 11  
-                                        game_state["cb_wrong_guesses_since_activation"] = 0  
-                                        game_state["active_powerup"] = None  
-                                        powerup_active = False
-                                        powerup_visible = False
+                            game_state["correct_guesses"] = 0
+                            game_state["wrong_guesses"] += 1
                         
-                        bow_timer_active = False
-
-                        if game_state["active_powerup"] not in ["HH", "GL", "CB"] and powerup_active == True:
-                            game_state["active_powerup"] = None
-                            powerup_active = False
-                            powerup_visible = False
-                            game_state["description"] = ""
-
                         next_round()  
                     elif back_button.collidepoint(event.pos):
                         show_map = False
@@ -780,18 +474,6 @@ def geoguessr_mode():
                     else:
                         if len(user_clicks) < game_state["numar_puncte_harta"]:
                             user_clicks.append(event.pos)
-
-                # is pwerup is pressed
-                if powerup_button_rect.collidepoint(event.pos) and powerup_visible:
-
-                    current_powerup["effect"]() 
-                    powerup_active = True  
-                    powerup_visible = True  
-                    powerup_used = True 
-                    game_state["active_powerup"] = current_powerup["name"] 
-
-                    if game_state["active_powerup"] == "Hammer":
-                        handle_hammer_effect()  
         
         pygame.display.update()
 
