@@ -184,6 +184,7 @@ def geoguessr_mode():
     # load images for UI
     right_ui_split = pygame.image.load(resource_path("./ui/rightUISplit.png"))
     right_ui = pygame.image.load(resource_path("./ui/rightUI.png"))
+    score_end = pygame.image.load(resource_path("./ui/blessed_end.png"))
 
     # resize UI images
     right_ui_split = pygame.transform.scale(right_ui_split, (243, 644))  # specified size
@@ -387,7 +388,7 @@ def geoguessr_mode():
                 if game_state["active_powerup"] in ["HH", "GL", "CB"]:
                     if game_state["active_powerup"] == "CB":
 
-                        if game_state["cb_wrong_guesses_since_activation"] >= 3:
+                        if game_state["cb_wrong_guesses_since_activation"] >= 3 and powerup_active and powerup_visible:
                             game_state["total_rounds"] = 11 
                             game_state["cb_wrong_guesses_since_activation"] = 0  
                             game_state["active_powerup"] = None  # Dezactivează power-up-ul
@@ -397,7 +398,7 @@ def geoguessr_mode():
                             powerup_used = False  
 
                     else:
-                        if game_state[f"{game_state['active_powerup'].lower()}_rounds_left"] <= 0:
+                        if game_state[f"{game_state['active_powerup'].lower()}_rounds_left"] <= 0 and powerup_active and powerup_visible:
                             game_state["active_powerup"] = None
                             game_state["description"] = ""  
                             powerup_active = False  
@@ -757,7 +758,7 @@ def geoguessr_mode():
                                 game_state["wrong_guesses"] += 1
                                 if game_state["active_powerup"] == "CB":
                                     game_state["cb_wrong_guesses_since_activation"] += 1
-                                    if game_state["cb_wrong_guesses_since_activation"] >= 3:
+                                    if game_state["cb_wrong_guesses_since_activation"] >= 3 and powerup_active and powerup_visible:
                                         game_state["total_rounds"] = 11  
                                         game_state["cb_wrong_guesses_since_activation"] = 0  
                                         game_state["active_powerup"] = None  
@@ -794,10 +795,10 @@ def geoguessr_mode():
         
         pygame.display.update()
 
-    screen.fill(BLACK)
+    screen.blit(score_end, (0,0))
     draw_text(screen, f"Final Score: {int(score)}", font, WHITE, WIDTH // 2, HEIGHT // 2, shadow_color=BLACK)
     pygame.display.update()
-    pygame.time.wait(2000)
+    pygame.time.wait(2500)
     from main import main_menu
     main_menu()  
 

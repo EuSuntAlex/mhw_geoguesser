@@ -34,6 +34,8 @@ submit_img = pygame.image.load(resource_path("./ui/sub.png"))
 submit_hover_img = pygame.image.load(resource_path("./ui/subHighlight.png"))
 clear_img = pygame.image.load(resource_path("./ui/clear.png"))
 clear_hover_img = pygame.image.load(resource_path("./ui/clearHighlight.png"))
+valky_img = pygame.image.load(resource_path("./ui/valky.png"))
+valky_img =  pygame.transform.scale(valky_img, (64, 64))
 
 MAPS_FOLDER = resource_path("maps")
 maps = [f for f in os.listdir(MAPS_FOLDER) if f.endswith(('.jpg', '.png'))]
@@ -84,7 +86,7 @@ def draw_button(surface, rect, text, texture, texture_hover, hover=False):
     total_height = len(lines) * font.get_height()  # total height of the text
     y_offset = (rect.height - total_height) // 2  # vertical centering
     
-    y_offset -= font.get_height() // 2  # fine adjustment for perfect centering
+    y_offset -= font.get_height() // 2
     y_offset -= 9
     
     for line in lines:
@@ -92,6 +94,39 @@ def draw_button(surface, rect, text, texture, texture_hover, hover=False):
         text_rect = text_surface.get_rect(center=(rect.centerx, rect.centery + y_offset))
         surface.blit(text_surface, text_rect)
         y_offset += font.get_height()  # move to the next line
+
+def draw_text_in_box(surface, text, color, x, y, line_spacing=10):
+
+    font = pygame.font.Font(resource_path("./fonts/Familiar Pro-Bold.otf"), 27)
+    box_width = 230  
+    box_height = 300  
+
+    words = text.split(" ")  
+    lines = []  
+    current_line = "" 
+
+    for word in words:
+        test_line = current_line + " " + word if current_line else word
+        test_width, _ = font.size(test_line)  
+
+        if test_width <= box_width:
+            current_line = test_line
+        else:
+            lines.append(current_line)
+            current_line = word
+
+    if current_line:
+        lines.append(current_line)
+
+    current_y = y  
+    for line in lines:
+        if current_y + font.get_height() > y + box_height:
+            break 
+
+        text_surface = font.render(line, True, color)
+        surface.blit(text_surface, (x, current_y))
+
+        current_y += font.get_height() + line_spacing
 
 def draw_history(surface, history, WIDTH, HEIGHT):
     history_x = WIDTH * 0.01  # x position of the history_img
@@ -117,11 +152,12 @@ def draw_history(surface, history, WIDTH, HEIGHT):
 
 
 
-def geoguessr_mode():
+def cursed_mode():
     screen = pygame.display.set_mode((0, 0), pygame.RESIZABLE)
     WIDTH, HEIGHT = screen.get_size()  
-    skipped = False
-
+    valky_y = HEIGHT * 0.357
+    valky_x = WIDTH * 0.908
+    valky_text = "Valky has cursed you, your game and this run. You shall not receive any blessings."
     # load images for back button
     back_btn_img_zones = pygame.image.load(resource_path("./ui/Back To Menu.png"))  # image for the first page
     back_btn_img_platforms = pygame.image.load(resource_path("./ui/BackBtn.png"))  # image for the platforms page
@@ -153,6 +189,7 @@ def geoguessr_mode():
     # load images for UI
     right_ui_split = pygame.image.load(resource_path("./ui/rightUISplit.png"))
     right_ui = pygame.image.load(resource_path("./ui/rightUI.png"))
+    score_screen = pygame.image.load(resource_path("./ui/cursed_end.png"))
 
     # resize UI images
     right_ui_split = pygame.transform.scale(right_ui_split, (243, 644))  # specified size
@@ -254,7 +291,9 @@ def geoguessr_mode():
 
         draw_history(screen, history, WIDTH, HEIGHT)
 
-        screen.blit(right_ui, (right_ui_x, right_ui_y))  
+        screen.blit(right_ui, (right_ui_x, right_ui_y))
+        screen.blit(valky_img,(valky_x,valky_y))  
+        draw_text_in_box(screen, valky_text, WHITE, WIDTH * 0.9118 - 88, valky_y + 150)
 
         if initial_image:
             screen.blit(initial_image, (WIDTH // 2 - initial_image.get_width() // 2, 30))
@@ -264,7 +303,6 @@ def geoguessr_mode():
             button_height = 80 
             button_spacing = 20
             
-            max_text_width = max(font.size(zone)[0] for zone in game_state["zone_posibile"])
             button_width = 260 
             
             start_x = (WIDTH - (num_columns * (button_width + button_spacing))) // 2
@@ -477,12 +515,12 @@ def geoguessr_mode():
         
         pygame.display.update()
 
-    screen.fill(BLACK)
+    screen.blit(score_screen,(0,0))
     draw_text(screen, f"Final Score: {int(score)}", font, WHITE, WIDTH // 2, HEIGHT // 2, shadow_color=BLACK)
     pygame.display.update()
-    pygame.time.wait(2000)
+    pygame.time.wait(2500)
     from main import main_menu
     main_menu()  
 
 if __name__ == "__main__":
-    geoguessr_mode()
+    cursed_mode()

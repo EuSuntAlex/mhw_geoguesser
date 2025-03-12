@@ -4,6 +4,7 @@ import easy_mode
 import geoguessr
 import howToPlay
 import os
+import cursedMode
 
 def resource_path(relative_path):
     try:
@@ -29,7 +30,6 @@ font = pygame.font.Font(resource_path("./fonts/Familiar Pro-Bold.otf"), 30)
 button_font = pygame.font.Font(None, 40)
 desc_font = pygame.font.Font(None, 30)  
 
-# Load button images from the ./ui/ folder
 bless_img = pygame.image.load(resource_path("./ui/bless.png"))
 bless_hover_img = pygame.image.load(resource_path("./ui/blessHighlight.png"))
 cursed_img = pygame.image.load(resource_path("./ui/cursed.png"))
@@ -38,15 +38,14 @@ speed_img = pygame.image.load(resource_path("./ui/speed.png"))
 speed_hover_img = pygame.image.load(resource_path("./ui/speedHighlight.png"))
 how_img = pygame.image.load(resource_path("./ui/how.png"))
 how_hover_img = pygame.image.load(resource_path("./ui/howHighlight.png"))
-cool_img = pygame.image.load(resource_path("./ui/cool.png"))  # Assuming you have a cool.png for "Cool People"
-cool_hover_img = pygame.image.load(resource_path("./ui/coolHighlight.png"))  # Assuming you have a coolHighlight.png
+cool_img = pygame.image.load(resource_path("./ui/cool.png"))  
+cool_hover_img = pygame.image.load(resource_path("./ui/coolHighlight.png"))
 back_btn_img = pygame.image.load(resource_path("./ui/backBtn.png"))
 back_btn_hover_img = pygame.image.load(resource_path("./ui/Back_Hover.png"))
 exit_img = pygame.image.load(resource_path("./ui/exit.png"))
 exit_hover_img = pygame.image.load(resource_path("./ui/exitHighlight.png"))
 
-# Resize button images
-button_width, button_height = 266, 86  # Button dimensions
+button_width, button_height = 266, 86  
 bless_img = pygame.transform.scale(bless_img, (button_width, button_height))
 bless_hover_img = pygame.transform.scale(bless_hover_img, (button_width, button_height))
 cursed_img = pygame.transform.scale(cursed_img, (button_width, button_height))
@@ -60,40 +59,33 @@ cool_hover_img = pygame.transform.scale(cool_hover_img, (button_width, button_he
 exit_img = pygame.transform.scale(exit_img, (button_width, button_height))
 exit_hover_img = pygame.transform.scale(exit_hover_img, (button_width, button_height))
 
-# Define button rectangles
-bless_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 - 200, button_width, button_height)
-cursed_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 - 120, button_width, button_height)
-speed_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 - 40, button_width, button_height)
-how_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 + 40, button_width, button_height)
-cool_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 + 120, button_width, button_height)
-exit_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 + 200, button_width, button_height)
+bless_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 - 270, button_width, button_height)
+cursed_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 - 170, button_width, button_height)
+speed_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 - 70, button_width, button_height)
+how_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 + 30, button_width, button_height)
+cool_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 + 130, button_width, button_height)
+exit_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT//2 + 230, button_width, button_height)
 
 def draw_button(surface, rect, texture, texture_hover, hover=False):
-    """
-    Draws a button using an image and a hover image.
-    """
+
     if hover:
-        surface.blit(texture_hover, rect.topleft)  # Display hover image
+        surface.blit(texture_hover, rect.topleft)  
     else:
-        surface.blit(texture, rect.topleft)  # Display normal image
+        surface.blit(texture, rect.topleft)  
 
 def cool_people_screen():
     global WIDTH, HEIGHT, screen
     running = True
     cool_image = pygame.image.load(resource_path("./cool.png"))
-    cool_image = pygame.transform.scale(cool_image, (WIDTH, HEIGHT))  # Scale the image to fit the screen
+    cool_image = pygame.transform.scale(cool_image, (WIDTH, HEIGHT)) 
 
-    # Define back button for the cool_people_screen
     back_button = pygame.Rect(WIDTH//2 - button_width//2, HEIGHT - 130, button_width, button_height)
 
     while running:
-        # Clear the screen
-        screen.fill(BLACK)  # Fill the screen with a background color (optional)
+        screen.fill(BLACK)  # might delete this
         
-        # Draw the cool image
-        screen.blit(cool_image, (0, 0))  # Draw the cool image at the top-left corner
+        screen.blit(cool_image, (0, 0)) 
 
-        # Draw the back button
         draw_button(screen, back_button, back_btn_img, back_btn_hover_img, back_button.collidepoint(pygame.mouse.get_pos()))
         
         for event in pygame.event.get():
@@ -105,13 +97,11 @@ def cool_people_screen():
             if event.type == pygame.VIDEORESIZE:
                 WIDTH, HEIGHT = event.w, event.h
                 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
-                # Re-center the back button
                 back_button.center = (WIDTH // 2, HEIGHT - 100)
-                # Re-scale the cool image
                 cool_image = pygame.transform.scale(cool_image, (WIDTH, HEIGHT))
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if back_button.collidepoint(event.pos):
-                    running = False  # Exit the cool_people_screen and return to the main menu
+                    running = False  # exit the cool_people_screen and return to the main menu
         
         pygame.display.update()
 
@@ -121,7 +111,6 @@ def main_menu():
     while running:
         screen.blit(pygame.transform.scale(background_image, (WIDTH, HEIGHT)), (0, 0))
         
-        # Draw buttons with the correct images
         draw_button(screen, bless_button, bless_img, bless_hover_img, bless_button.collidepoint(pygame.mouse.get_pos()))
         draw_button(screen, cursed_button, cursed_img, cursed_hover_img, cursed_button.collidepoint(pygame.mouse.get_pos()))
         draw_button(screen, speed_button, speed_img, speed_hover_img, speed_button.collidepoint(pygame.mouse.get_pos()))
@@ -138,23 +127,16 @@ def main_menu():
             if event.type == pygame.VIDEORESIZE:
                 WIDTH, HEIGHT = event.w, event.h
                 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
-                
-                # Re-center buttons
-                bless_button.center = (WIDTH // 2, HEIGHT // 2 - 200)
-                cursed_button.center = (WIDTH // 2, HEIGHT // 2 - 120)
-                speed_button.center = (WIDTH // 2, HEIGHT // 2 - 40)
-                how_button.center = (WIDTH // 2, HEIGHT // 2 + 40)
-                cool_button.center = (WIDTH // 2, HEIGHT // 2 + 120)
-                exit_button.center = (WIDTH // 2, HEIGHT // 2 + 200)
+
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if bless_button.collidepoint(event.pos):
                     geoguessr.geoguessr_mode()
                 if cursed_button.collidepoint(event.pos):
-                    pass  # Add functionality for the "Cursed" button later
+                    cursedMode.cursed_mode()
                 if speed_button.collidepoint(event.pos):
                     easy_mode.easy_mode()
                 if how_button.collidepoint(event.pos):
-                    howToPlay.how_to_play(screen, WIDTH, HEIGHT)
+                    howToPlay.first_page(screen, WIDTH, HEIGHT)
                 if cool_button.collidepoint(event.pos):
                     cool_people_screen()
                 if exit_button.collidepoint(event.pos):
