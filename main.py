@@ -17,7 +17,6 @@ pygame.init()
 
 screen = pygame.display.set_mode((0, 0), pygame.RESIZABLE)
 WIDTH, HEIGHT = screen.get_size()  
-
 background_image = pygame.image.load(resource_path("background.png"))
 background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
 
@@ -110,7 +109,6 @@ def main_menu():
     running = True
     while running:
         screen.blit(pygame.transform.scale(background_image, (WIDTH, HEIGHT)), (0, 0))
-        
         draw_button(screen, bless_button, bless_img, bless_hover_img, bless_button.collidepoint(pygame.mouse.get_pos()))
         draw_button(screen, cursed_button, cursed_img, cursed_hover_img, cursed_button.collidepoint(pygame.mouse.get_pos()))
         draw_button(screen, speed_button, speed_img, speed_hover_img, speed_button.collidepoint(pygame.mouse.get_pos()))
